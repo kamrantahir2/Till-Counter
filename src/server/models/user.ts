@@ -1,7 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 import { IUser } from "../types";
 
-const userSchema = new mongoose.Schema<IUser>({
+const userSchema = new Schema<IUser>({
   username: {
     type: String,
     required: true,
@@ -11,6 +11,11 @@ const userSchema = new mongoose.Schema<IUser>({
     type: String,
     required: true,
   },
+  tills: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+    },
+  ],
 });
 
 userSchema.set("toJSON", {

@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 export interface IUser {
   username: string;
   passwordHash: string;
-  tills: mongoose.Schema.Types.ObjectId;
+  tills: mongoose.Schema.Types.ObjectId[];
 }
 
 export interface ITill {
