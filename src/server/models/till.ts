@@ -1,12 +1,6 @@
-import { Schema, model, connect } from "mongoose";
+import { Schema } from "mongoose";
 import mongoose from "mongoose";
-
-interface ITill {
-  tillNumber: number;
-  tillTotal: number;
-  totalAfterFloat: number;
-  user: mongoose.Schema.Types.ObjectId;
-}
+import { ITill } from "../types";
 
 const tillSchema = new Schema<ITill>({
   tillNumber: { type: Number, required: true },
