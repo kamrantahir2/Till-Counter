@@ -9,6 +9,8 @@ app.use(cors());
 
 const url = process.env.MONGODB_URI;
 
+mongoose.set("strictQuery", false);
+
 if (typeof url === "string") {
   mongoose
     .connect(url)
