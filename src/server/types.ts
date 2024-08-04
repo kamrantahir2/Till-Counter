@@ -9,7 +9,6 @@ export interface IUser {
 export interface ITill {
   tillNumber: number;
   tillTotal: number;
-  totalAfterFloat: number;
   user: mongoose.Schema.Types.ObjectId;
-  additionalInfo: string;
+  additionalInfo?: string;
 }

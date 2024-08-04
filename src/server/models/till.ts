@@ -5,7 +5,6 @@ import { ITill } from "../types";
 const tillSchema = new Schema<ITill>({
   tillNumber: { type: Number, required: true },
   tillTotal: { type: Number, required: true },
-  totalAfterFloat: { type: Number, required: true },
   additionalInfo: { type: String },
   user: {
     type: mongoose.Schema.Types.ObjectId,
