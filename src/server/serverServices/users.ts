@@ -1,5 +1,5 @@
 import User from "../models/user";
-import { CreatedUser, NewUser } from "../types";
+import { CreatedUser, Credentials } from "../types";
 import bcrypt from "bcrypt";
 
 const getAllUsers = async (): Promise<CreatedUser[]> => {
@@ -7,7 +7,7 @@ const getAllUsers = async (): Promise<CreatedUser[]> => {
   return response;
 };
 
-const createUser = async (newUser: NewUser): Promise<CreatedUser> => {
+const createUser = async (newUser: Credentials): Promise<CreatedUser> => {
   const { username, password } = newUser;
   const saltRounds = 10;
   const passwordHash = await bcrypt.hash(password, saltRounds);

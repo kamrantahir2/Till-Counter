@@ -14,6 +14,7 @@ const userSchema = new Schema<IUser>({
   tills: [
     {
       type: mongoose.Schema.Types.ObjectId,
+      ref: "Till",
     },
   ],
 });
