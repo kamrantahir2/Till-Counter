@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import usersRouter from "./routes/users";
+import loginRouter from "./routes/login";
 dotenv.config();
 const app = express();
 app.use(express.json());
@@ -24,4 +25,6 @@ if (typeof url === "string") {
 }
 
 app.use("/api/users", usersRouter);
+app.use("/api/login", loginRouter);
+
 export default app;
