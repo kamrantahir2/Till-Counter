@@ -8,4 +8,12 @@ usersRouter.get("/", async (_request, response) => {
   response.send(data);
 });
 
+usersRouter.post("/", async (request, response) => {
+  const { username, password } = request.body;
+
+  const createdUser = await usersService.createUser({ username, password });
+
+  response.send(createdUser);
+});
+
 export default usersRouter;
