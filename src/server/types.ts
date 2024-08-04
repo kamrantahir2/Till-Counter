@@ -12,3 +12,11 @@ export interface ITill {
   user: mongoose.Schema.Types.ObjectId;
   additionalInfo?: string;
 }
+
+export interface CreatedUser extends IUser {
+  id: mongoose.Schema.Types.ObjectId;
+}
+
+export interface CreatedTill extends ITill {
+  id: mongoose.Schema.Types.ObjectId;
+}
