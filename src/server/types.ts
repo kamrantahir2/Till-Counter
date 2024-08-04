@@ -11,4 +11,5 @@ export interface ITill {
   tillTotal: number;
   totalAfterFloat: number;
   user: mongoose.Schema.Types.ObjectId;
+  additionalInfo: string;
 }
