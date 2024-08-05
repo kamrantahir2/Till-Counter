@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import usersRouter from "./routes/users";
 import loginRouter from "./routes/login";
+import middleware from "./middleware";
 dotenv.config();
 const app = express();
 app.use(express.json());
@@ -26,5 +27,7 @@ if (typeof url === "string") {
 
 app.use("/api/users", usersRouter);
 app.use("/api/login", loginRouter);
+
+app.use(middleware.errorHandler);
 
 export default app;
