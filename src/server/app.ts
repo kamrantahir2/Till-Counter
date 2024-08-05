@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import usersRouter from "./routes/users";
 import loginRouter from "./routes/login";
-import middleware from "./middleware";
+import middleware from "../utils/middleware";
 dotenv.config();
 const app = express();
 app.use(express.json());
