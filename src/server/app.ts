@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 import usersRouter from "./routes/users";
 import loginRouter from "./routes/login";
 import middleware from "../utils/middleware";
+import tillRouter from "./routes/tills";
 dotenv.config();
 const app = express();
 app.use(express.json());
@@ -27,6 +28,7 @@ if (typeof url === "string") {
 
 app.use("/api/users", usersRouter);
 app.use("/api/login", loginRouter);
+app.use("/api/till", tillRouter);
 
 app.use(middleware.errorHandler);
 

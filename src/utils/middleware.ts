@@ -23,6 +23,8 @@ const errorHandler = (
       return response.status(401).json({ error: "Token Expired" });
     } else if (error.name === "invalid secret") {
       return response.status(500).json({ error: "invalid secret" });
+    } else if (error.name === "token invalid") {
+      return response.status(401).json({ error: "token invalid" });
     } else {
       return response.status(500).json({ error: error });
     }

@@ -1,9 +1,14 @@
 import mongoose from "mongoose";
+import { JwtPayload } from "jsonwebtoken";
 
 export interface IUser {
   username: string;
   passwordHash: string;
   tills: mongoose.Schema.Types.ObjectId[];
+}
+
+export interface IJwtPayload extends JwtPayload {
+  id: string;
 }
 
 export interface ITill {
