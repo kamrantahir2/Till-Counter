@@ -8,15 +8,15 @@ import { LoggedInUser, Credentials } from "../types";
 const login = async (credentials: Credentials): Promise<LoggedInUser> => {
   const { username, password } = credentials;
 
-  const user = await User.findOne({ username });
-
-  //     Add this to about above code after creating Till routes:
-  // .populate("Till", {
-  //     date: 1,
-  //     tillNumber: 1,
-  //     tillTotal: 1,
-  //     additionalInfo: 1,
-  //  });
+  const user = await User.findOne({ username }).populate("tills", {
+    id: 1,
+    tillNumber: 1,
+    tillTotal: 1,
+    expectedTotal: 1,
+    expectedVsTotal: 1,
+    date: 1,
+    additionalInfo: 1,
+  });
 
   const passwordCorrect =
     user === null ? false : await bcrypt.compare(password, user.passwordHash);

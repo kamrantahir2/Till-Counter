@@ -12,9 +12,12 @@ const getUserById = async (id: string): Promise<CreatedUser> => {
     id: 1,
     tillNumber: 1,
     tillTotal: 1,
+    expectedTotal: 1,
+    expectedVsTotal: 1,
     date: 1,
     additionalInfo: 1,
   });
+
   if (user === null) {
     throw new Error("user not found");
   }

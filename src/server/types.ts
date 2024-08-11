@@ -14,6 +14,8 @@ export interface IJwtPayload extends JwtPayload {
 export interface ITill {
   tillNumber: number;
   tillTotal: number;
+  expectedTotal: number;
+  expectedVsTotal: number;
   date: string;
   user: mongoose.Schema.Types.ObjectId;
   additionalInfo?: string;

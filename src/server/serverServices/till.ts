@@ -37,7 +37,8 @@ const tillTypeChecking = (till: any): till is ITill => {
     "tillTotal" in till &&
     "tillNumber" in till &&
     "date" in till &&
-    "user" in till
+    "user" in till &&
+    "expectedTotal" in till
   ) {
     return true;
   } else {
@@ -72,12 +73,18 @@ const createTill = async (
     throw new Error("user not found");
   }
 
+  const expectedVsTotal = Number(
+    (till.tillTotal - till.expectedTotal).toFixed(2)
+  );
+
   const createdTill: ITill = {
     tillNumber: till.tillNumber,
     tillTotal: till.tillTotal,
+    expectedTotal: till.expectedTotal,
     date: till.date,
     user: user.id,
     additionalInfo: till.additionalInfo,
+    expectedVsTotal: expectedVsTotal,
   };
 
   const newTill = new Till(createdTill);
