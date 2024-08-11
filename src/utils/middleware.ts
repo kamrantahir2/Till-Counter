@@ -21,12 +21,14 @@ const errorHandler = (
       return response.status(401).json({ error: "token invalid" });
     } else if (error.name === "TokenExpiredError") {
       return response.status(401).json({ error: "Token Expired" });
-    } else if (error.name === "invalid secret") {
+    } else if (error.message === "invalid secret") {
       return response.status(500).json({ error: "invalid secret" });
-    } else if (error.name === "token invalid") {
+    } else if (error.message === "token invalid") {
       return response.status(401).json({ error: "token invalid" });
-    } else if (error.name === "missing fields") {
+    } else if (error.message === "missing fields") {
       return response.status(400).json({ error: "missing fields" });
+    } else if (error.message === "user not found") {
+      return response.status(404).json({ error: "user not found" });
     } else {
       return response.status(500).json({ error: error });
     }

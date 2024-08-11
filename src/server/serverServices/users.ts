@@ -7,6 +7,14 @@ const getAllUsers = async (): Promise<CreatedUser[]> => {
   return response;
 };
 
+const getUserById = async (id: string): Promise<CreatedUser> => {
+  const user = await User.findById(id);
+  if (user === null) {
+    throw new Error("user not found");
+  }
+  return user;
+};
+
 const createUser = async (newUser: Credentials): Promise<CreatedUser> => {
   const { username, password } = newUser;
   const saltRounds = 10;
@@ -21,4 +29,4 @@ const createUser = async (newUser: Credentials): Promise<CreatedUser> => {
   return savedUser;
 };
 
-export default { getAllUsers, createUser };
+export default { getAllUsers, createUser, getUserById };

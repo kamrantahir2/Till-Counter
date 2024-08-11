@@ -12,6 +12,17 @@ usersRouter.get("/", async (_request, response, next) => {
   }
 });
 
+usersRouter.get("/:id", async (request, response, next) => {
+  try {
+    const id = request.params.id;
+    const result = await usersService.getUserById(id);
+
+    response.status(200).send(result);
+  } catch (error) {
+    next(error);
+  }
+});
+
 usersRouter.post("/", async (request, response, next) => {
   try {
     const { username, password } = request.body;
