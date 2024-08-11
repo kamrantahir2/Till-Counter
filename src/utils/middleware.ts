@@ -25,6 +25,8 @@ const errorHandler = (
       return response.status(500).json({ error: "invalid secret" });
     } else if (error.name === "token invalid") {
       return response.status(401).json({ error: "token invalid" });
+    } else if (error.name === "missing fields") {
+      return response.status(400).json({ error: "missing fields" });
     } else {
       return response.status(500).json({ error: error });
     }

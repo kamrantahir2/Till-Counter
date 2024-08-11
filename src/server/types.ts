@@ -24,7 +24,7 @@ export interface CreatedUser extends IUser {
 }
 
 export interface CreatedTill extends ITill {
-  id: mongoose.Schema.Types.ObjectId;
+  id?: mongoose.Schema.Types.ObjectId;
 }
 
 export interface Credentials {

@@ -2,8 +2,9 @@ import Till from "../models/till";
 import User from "../models/user";
 import jwt, { decode } from "jsonwebtoken";
 import { Request, Response } from "express";
-import { CreatedTill, ITill, IJwtPayload } from "../types";
+import { CreatedTill, ITill, IJwtPayload, CreatedUser } from "../types";
 import dotenv from "dotenv";
+import mongoose, { ObjectId } from "mongoose";
 dotenv.config();
 
 const getTokenFrom = (request: Request) => {
@@ -48,11 +49,35 @@ const createTill = async (till: ITill, request: Request) => {
     throw new Error("token invalid");
   }
 
-  console.log(tillTypeChecking(till));
+  if (!tillTypeChecking(till)) {
+    throw new Error("missing fields");
+  }
 
   const user = await User.findById(decodedToken.id);
 
-  return user;
+  if (user === null) {
+    throw new Error("user not found");
+  }
+
+  const createdTill: ITill = {
+    tillNumber: till.tillNumber,
+    tillTotal: till.tillTotal,
+    date: till.date,
+    user: user.id,
+    additionalInfo: till.additionalInfo,
+  };
+
+  const newTill = new Till(createdTill);
+
+  const savedTill = await newTill.save();
+
+  const tillId = savedTill._id as unknown as ObjectId;
+
+  user.tills = user.tills.concat(tillId);
+
+  await user.save();
+
+  return savedTill;
 };
 
 export default { getAllTills, createTill };
