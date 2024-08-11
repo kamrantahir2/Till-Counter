@@ -22,6 +22,16 @@ const getAllTills = async (): Promise<CreatedTill[]> => {
   return data;
 };
 
+const getTillById = async (id: string): Promise<CreatedTill> => {
+  const data = await Till.findById(id);
+
+  if (data === null) {
+    throw new Error("till not found");
+  }
+
+  return data;
+};
+
 const tillTypeChecking = (till: any): till is ITill => {
   if (
     "tillTotal" in till &&
@@ -83,4 +93,4 @@ const createTill = async (
   return savedTill;
 };
 
-export default { getAllTills, createTill };
+export default { getAllTills, createTill, getTillById };

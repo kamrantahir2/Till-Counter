@@ -11,6 +11,17 @@ tillRouter.get("/", async (_request, response, next) => {
   }
 });
 
+tillRouter.get("/:id", async (request, response, next) => {
+  try {
+    const id = request.params.id;
+    const result = await tillService.getTillById(id);
+
+    response.status(200).send(result);
+  } catch (error) {
+    next(error);
+  }
+});
+
 tillRouter.post("/", async (req, res, next) => {
   try {
     const body = req.body;

@@ -29,6 +29,8 @@ const errorHandler = (
       return response.status(400).json({ error: "missing fields" });
     } else if (error.message === "user not found") {
       return response.status(404).json({ error: "user not found" });
+    } else if (error.message === "till not found") {
+      return response.status(404).json({ error: "till not found" });
     } else {
       return response.status(500).json({ error: error });
     }
