@@ -1,10 +1,10 @@
 import Till from "../models/till";
 import User from "../models/user";
-import jwt, { decode } from "jsonwebtoken";
-import { Request, Response } from "express";
-import { CreatedTill, ITill, IJwtPayload, CreatedUser } from "../types";
+import jwt from "jsonwebtoken";
+import { Request } from "express";
+import { CreatedTill, ITill, IJwtPayload } from "../types";
 import dotenv from "dotenv";
-import mongoose, { ObjectId } from "mongoose";
+import { ObjectId } from "mongoose";
 dotenv.config();
 
 const getTokenFrom = (request: Request) => {
@@ -16,7 +16,7 @@ const getTokenFrom = (request: Request) => {
   return "no token";
 };
 
-const getAllTills = async () => {
+const getAllTills = async (): Promise<CreatedTill[]> => {
   const data = await Till.find({});
 
   return data;
@@ -35,7 +35,10 @@ const tillTypeChecking = (till: any): till is ITill => {
   }
 };
 
-const createTill = async (till: ITill, request: Request) => {
+const createTill = async (
+  till: ITill,
+  request: Request
+): Promise<CreatedTill> => {
   if (typeof process.env.SECRET !== "string") {
     throw new Error("invalid secret");
   }
