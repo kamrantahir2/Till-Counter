@@ -8,7 +8,13 @@ const getAllUsers = async (): Promise<CreatedUser[]> => {
 };
 
 const getUserById = async (id: string): Promise<CreatedUser> => {
-  const user = await User.findById(id);
+  const user = await User.findById(id).populate("tills", {
+    id: 1,
+    tillNumber: 1,
+    tillTotal: 1,
+    date: 1,
+    additionalInfo: 1,
+  });
   if (user === null) {
     throw new Error("user not found");
   }
