@@ -73,10 +73,6 @@ const createTill = async (
     throw new Error("user not found");
   }
 
-  const expectedVsTotal = Number(
-    (till.tillTotal - till.expectedTotal).toFixed(2)
-  );
-
   const createdTill: ITill = {
     tillNumber: till.tillNumber,
     tillTotal: till.tillTotal,
@@ -84,7 +80,7 @@ const createTill = async (
     date: till.date,
     user: user.id,
     additionalInfo: till.additionalInfo,
-    expectedVsTotal: expectedVsTotal,
+    expectedVsTotal: Number(till.expectedVsTotal.toFixed(2)),
   };
 
   const newTill = new Till(createdTill);
