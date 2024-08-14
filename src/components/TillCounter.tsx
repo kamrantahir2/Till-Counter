@@ -3,7 +3,9 @@ import BalancedTill from "./BalancedTill";
 import { useState } from "react";
 
 const TillCounter = () => {
-  const [tillTotal, setTillTotal] = useState<number>(0);
+  // totalTakings =  Till total minus float
+  const [totalTakings, setTotalTakings] = useState(0);
+  const [fiveAndCoins, setFiveAndCoins] = useState(0);
 
   return (
     <div>

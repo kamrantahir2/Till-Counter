@@ -10,17 +10,21 @@ const CurrencyInput = ({
   label: string;
   currency: string;
 }) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(Number(e.target.value));
+  };
+
   return (
-    <div className="flex h-12 mb-4">
+    <div className="flex h-11 mb-4">
       <Label className="w-44 leading-10 font-poppins" htmlFor={currency}>
         {label}:
       </Label>
 
       <Input
-        onChange={(e) => setValue(Number(e.target.value))}
+        onChange={(e) => handleChange(e)}
         type="number"
         id={currency}
-        placeholder={`No. of ${label}`}
+        placeholder={currency !== "float" ? `No. of ${label}` : `${label}`}
       />
     </div>
   );
