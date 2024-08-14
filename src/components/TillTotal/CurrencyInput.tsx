@@ -12,7 +12,7 @@ const CurrencyInput = ({
 }) => {
   return (
     <div className="flex h-12 mb-4">
-      <Label className="w-44 leading-9 font-poppins" htmlFor={currency}>
+      <Label className="w-44 leading-10 font-poppins" htmlFor={currency}>
         {label}:
       </Label>
 
