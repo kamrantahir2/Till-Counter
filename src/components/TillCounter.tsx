@@ -1,4 +1,4 @@
-import TillTotal from "./TillTotal";
+import TillTotal from "./TillTotal/TillTotal";
 import BalancedTill from "./BalancedTill";
 import { useState } from "react";
 
