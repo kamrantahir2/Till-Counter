@@ -2,16 +2,18 @@ import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 
 const CurrencyInput = ({
-  setValue,
+  setTotal,
+  value,
   label,
   currency,
 }: {
-  setValue: React.Dispatch<React.SetStateAction<number>>;
+  setTotal: React.Dispatch<React.SetStateAction<number>>;
+  value: number;
   label: string;
   currency: string;
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(Number(e.target.value));
+    setTotal(parseFloat((Number(e.target.value) * value).toFixed(2)));
   };
 
   return (
