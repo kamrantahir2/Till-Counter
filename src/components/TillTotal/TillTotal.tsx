@@ -2,15 +2,13 @@ import { useState } from "react";
 import { Button } from "../ui/button";
 import CurrencyInput from "./CurrencyInput";
 
-// const TillTotal = ({
-//   setFiveAndCoins,
-//   setTotalTakings,
-// }: {
-//   setFiveAndCoins: React.Dispatch<React.SetStateAction<number>>;
-//   setTotalTakings: React.Dispatch<React.SetStateAction<number>>;
-// }) => {
-
-const TillTotal = () => {
+const TillTotal = ({
+  setFiveAndCoins,
+  setTotalTakings,
+}: {
+  setFiveAndCoins: React.Dispatch<React.SetStateAction<number>>;
+  setTotalTakings: React.Dispatch<React.SetStateAction<number>>;
+}) => {
   // Value of coins/notes
   const [totalOneP, setTotalOneP] = useState(0);
   const [totalTwoP, setTotalTwoP] = useState(0);
@@ -28,7 +26,34 @@ const TillTotal = () => {
 
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    console.log(float);
+
+    const fiveAndCoins: number = Number(
+      (
+        totalOneP +
+        totalTwoP +
+        totalFiveP +
+        totalTenP +
+        totalTwentyP +
+        totalFiftyP +
+        totalOnePound +
+        totalTwoPound +
+        totalFivePound
+      ).toFixed(2)
+    );
+
+    setFiveAndCoins(fiveAndCoins);
+
+    const tillTotal: number = Number(
+      (
+        fiveAndCoins +
+        totalTenPound +
+        totalTwentyPound +
+        totalFiftyPound -
+        float
+      ).toFixed(2)
+    );
+
+    setTotalTakings(tillTotal);
   };
 
   return (

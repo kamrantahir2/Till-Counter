@@ -40,6 +40,7 @@ const CurrencyInput = ({
         onChange={(e) => handleChange(e)}
         type="number"
         id={currency}
+        required={currency === "float"}
         placeholder={currency !== "float" ? `No. of ${label}` : `${label}`}
         className="w-6/12"
       />
