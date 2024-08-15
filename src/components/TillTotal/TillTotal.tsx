@@ -32,86 +32,101 @@ const TillTotal = () => {
   };
 
   return (
-    <div className="sm:w-5/12 md:w-4/12">
+    <div className="md:w-4/12 ">
       <form onSubmit={handleSubmit}>
-        <CurrencyInput
-          label="Float"
-          currency="float"
-          setTotal={setFloat}
-          value={1}
-        />
-        <CurrencyInput
-          label="1p Coins"
-          currency="1p"
-          setTotal={setTotalOneP}
-          value={0.01}
-        />
-        <CurrencyInput
-          setTotal={setTotalTwoP}
-          value={0.02}
-          label="2p Coins"
-          currency="2p"
-        />
-        <CurrencyInput
-          setTotal={setTotalFiveP}
-          value={0.05}
-          label="5p Coins"
-          currency="5p"
-        />
-        <CurrencyInput
-          setTotal={setTotalTenP}
-          value={0.1}
-          label="10p Coins"
-          currency="10p"
-        />
-        <CurrencyInput
-          setTotal={setTotalTwentyP}
-          value={0.2}
-          label="20p Coins"
-          currency="20p"
-        />
-        <CurrencyInput
-          setTotal={setTotalFiftyP}
-          value={0.5}
-          label="50p Coins"
-          currency="50p"
-        />
-        <CurrencyInput
-          setTotal={setTotalOnePound}
-          value={1}
-          label="£1 Coins"
-          currency="£1"
-        />
-        <CurrencyInput
-          setTotal={setTotalTwoPound}
-          value={2}
-          label="£2 Coins"
-          currency="£2"
-        />
-        <CurrencyInput
-          setTotal={setTotalFivePound}
-          value={5}
-          label="£5 Notes"
-          currency="£5"
-        />
-        <CurrencyInput
-          setTotal={setTotalTenPound}
-          value={10}
-          label="£10 Notes"
-          currency="£10"
-        />
-        <CurrencyInput
-          setTotal={setTotalTwentyPound}
-          value={20}
-          label="£20 Notes"
-          currency="£20"
-        />
-        <CurrencyInput
-          setTotal={setTotalFiftyPound}
-          value={50}
-          label="£50 Notes"
-          currency="£50"
-        />
+        <div className="">
+          <CurrencyInput
+            label="Float"
+            currency="float"
+            setTotal={setFloat}
+            total={float}
+            value={1}
+          />
+          <CurrencyInput
+            label="1p Coins"
+            currency="1p"
+            setTotal={setTotalOneP}
+            value={0.01}
+            total={totalOneP}
+          />
+          <CurrencyInput
+            setTotal={setTotalTwoP}
+            value={0.02}
+            label="2p Coins"
+            currency="2p"
+            total={totalTwoP}
+          />
+          <CurrencyInput
+            setTotal={setTotalFiveP}
+            value={0.05}
+            label="5p Coins"
+            currency="5p"
+            total={totalFiveP}
+          />
+          <CurrencyInput
+            setTotal={setTotalTenP}
+            value={0.1}
+            label="10p Coins"
+            currency="10p"
+            total={totalTenP}
+          />
+          <CurrencyInput
+            setTotal={setTotalTwentyP}
+            value={0.2}
+            label="20p Coins"
+            currency="20p"
+            total={totalTwentyP}
+          />
+          <CurrencyInput
+            setTotal={setTotalFiftyP}
+            value={0.5}
+            label="50p Coins"
+            currency="50p"
+            total={totalFiftyP}
+          />
+          <CurrencyInput
+            setTotal={setTotalOnePound}
+            value={1}
+            label="£1 Coins"
+            currency="£1"
+            total={totalOnePound}
+          />
+          <CurrencyInput
+            setTotal={setTotalTwoPound}
+            value={2}
+            label="£2 Coins"
+            currency="£2"
+            total={totalTwoPound}
+          />
+          <CurrencyInput
+            setTotal={setTotalFivePound}
+            value={5}
+            label="£5 Notes"
+            currency="£5"
+            total={totalFivePound}
+          />
+          <CurrencyInput
+            setTotal={setTotalTenPound}
+            value={10}
+            label="£10 Notes"
+            currency="£10"
+            total={totalTenPound}
+          />
+          <CurrencyInput
+            setTotal={setTotalTwentyPound}
+            value={20}
+            label="£20 Notes"
+            currency="£20"
+            total={totalTwentyPound}
+          />
+          <CurrencyInput
+            setTotal={setTotalFiftyPound}
+            value={50}
+            label="£50 Notes"
+            currency="£50"
+            total={totalFiftyPound}
+          />
+        </div>
         <Button type="submit">Submit</Button>
       </form>
     </div>
