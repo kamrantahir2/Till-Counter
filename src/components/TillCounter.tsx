@@ -9,6 +9,9 @@ const TillCounter = () => {
 
   return (
     <div>
+      <h1 className="text-center mb-10 text-2xl font-semibold underline underline-offset-8">
+        Till Counter
+      </h1>
       <TillTotal />
       <BalancedTill />
     </div>

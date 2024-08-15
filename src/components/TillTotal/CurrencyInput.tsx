@@ -31,7 +31,7 @@ const CurrencyInput = ({
   }, [total]);
 
   return (
-    <div className="flex h-11 mb-4 ">
+    <div className="flex h-10 mb-4 ">
       <Label className="w-40 leading-10 font-poppins" htmlFor={currency}>
         {label}:
       </Label>
