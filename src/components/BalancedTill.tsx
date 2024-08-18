@@ -15,6 +15,12 @@ const BalancedTill = ({
   float: number;
 }) => {
   const [expectedTotal, setExpectedTotal] = useState(0);
+  const [expectedVsTotal, setExpectedVsTotal] = useState(0);
+
+  const handleSubmit = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    console.log(expectedTotal);
+  };
 
   // if (tillTotal === 0) {
   //   return (
@@ -43,14 +49,16 @@ const BalancedTill = ({
         <span className="font-semibold">{gbp.format(totalTakings)}</span>
       </h1>
 
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="mt-4 flex">
-          <h1 className="text-xl leading-10">Expected Total:</h1>
+          <h1 className="text-xl leading-10">Expected Total: £</h1>
           <Input
             placeholder="Expected Total"
             className="w-6/12 ml-4"
             type="number"
-            onChange={(e) => setExpectedTotal(e.target.value)}
+            onChange={(e) => setExpectedTotal(Number(e.target.value))}
+            required
+            step={0.01}
           />
         </div>
         <Button type="submit">Submit</Button>
