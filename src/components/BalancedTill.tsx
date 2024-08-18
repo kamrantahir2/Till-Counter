@@ -20,7 +20,7 @@ const BalancedTill = ({
   const [overUnderCalculated, setOverUnderCalculated] = useState(false);
 
   const overUnder = (): string => {
-    const diff: number = Number((expectedTotal - totalTakings).toFixed(2));
+    const diff: number = Number((totalTakings - expectedTotal).toFixed(2));
 
     if (diff <= 0) {
       return `${gbp.format(diff)}`;
@@ -41,8 +41,8 @@ const BalancedTill = ({
 
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
-
     setExpectedVsTotal(overUnder());
+    setOverUnderCalculated(true);
   };
 
   if (tillTotal === 0) {
@@ -51,7 +51,7 @@ const BalancedTill = ({
         <h1 className="text-center mb-10 text-2xl font-semibold underline underline-offset-8">
           Till Total
         </h1>
-        <h1 className="text-xl italic">
+        <h1 className="text-2xl text-center italic">
           *Till totals will be shown after submitting Till Counter form*
         </h1>
         <div className="h-12"></div>
@@ -64,18 +64,23 @@ const BalancedTill = ({
       <h1 className="text-center mb-10 text-2xl font-semibold underline underline-offset-8">
         Till Total
       </h1>
-      <h1 className="text-xl">
+
+      <h3 className="text-xl my-6">
+        £5 Notes & Coins: <span className="font-semibold">£{fiveAndCoins}</span>
+      </h3>
+
+      <h3 className="text-xl">
         Till Total:{" "}
         <span className="font-semibold">{gbp.format(tillTotal)}</span>
         <br />- Float:{" "}
         <span className="font-semibold">{gbp.format(float)}</span>
         <br /> = Total Takings:{" "}
         <span className="font-semibold">{gbp.format(totalTakings)}</span>
-      </h1>
+      </h3>
 
       <form onSubmit={handleSubmit}>
         <div className="mt-4 flex">
-          <h1 className="text-xl leading-10">Expected Total: £</h1>
+          <h3 className="text-xl leading-10">Expected Total: £</h3>
           <Input
             placeholder="Expected Total"
             className="w-6/12 ml-4 text-md"
@@ -89,15 +94,17 @@ const BalancedTill = ({
           Submit
         </Button>
       </form>
-      <div>
-        <h3 className="text-xl mt-4">
-          Till Over/Under:{" "}
-          <span className={`font-semibold ${overUnderStyle()}`}>
-            {" "}
-            {expectedVsTotal}
-          </span>
-        </h3>
-      </div>
+      {overUnderCalculated && (
+        <div>
+          <h3 className="text-xl mt-4">
+            Till Over/Under:{" "}
+            <span className={`font-semibold ${overUnderStyle()}`}>
+              {" "}
+              {expectedVsTotal}
+            </span>
+          </h3>
+        </div>
+      )}
       <div className="h-12"></div>
     </div>
   );
