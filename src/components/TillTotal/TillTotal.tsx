@@ -5,9 +5,13 @@ import CurrencyInput from "./CurrencyInput";
 const TillTotal = ({
   setFiveAndCoins,
   setTotalTakings,
+  setFloat,
+  float,
 }: {
   setFiveAndCoins: React.Dispatch<React.SetStateAction<number>>;
   setTotalTakings: React.Dispatch<React.SetStateAction<number>>;
+  setFloat: React.Dispatch<React.SetStateAction<number>>;
+  float: number;
 }) => {
   // Value of coins/notes
   const [totalOneP, setTotalOneP] = useState(0);
@@ -22,7 +26,6 @@ const TillTotal = ({
   const [totalTenPound, setTotalTenPound] = useState(0);
   const [totalTwentyPound, setTotalTwentyPound] = useState(0);
   const [totalFiftyPound, setTotalFiftyPound] = useState(0);
-  const [float, setFloat] = useState(0);
 
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -58,7 +61,7 @@ const TillTotal = ({
 
   return (
     <div>
-      <div className="md:w-4/12 ">
+      <div className="md:border-r-2">
         <form onSubmit={handleSubmit}>
           <div className="">
             <CurrencyInput
