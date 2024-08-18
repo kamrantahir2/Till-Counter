@@ -2,7 +2,7 @@ import Till from "../models/till";
 import User from "../models/user";
 import jwt from "jsonwebtoken";
 import { Request } from "express";
-import { CreatedTill, ITill, IJwtPayload } from "../types";
+import { CreatedTill, ITill, IJwtPayload } from "../../types";
 import dotenv from "dotenv";
 import { ObjectId } from "mongoose";
 dotenv.config();

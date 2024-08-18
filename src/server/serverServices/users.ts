@@ -1,5 +1,5 @@
 import User from "../models/user";
-import { CreatedUser, Credentials } from "../types";
+import { CreatedUser, Credentials } from "../../types";
 import bcrypt from "bcrypt";
 
 const getAllUsers = async (): Promise<CreatedUser[]> => {

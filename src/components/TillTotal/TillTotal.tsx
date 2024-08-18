@@ -7,10 +7,12 @@ const TillTotal = ({
   setTotalTakings,
   setFloat,
   float,
+  setTillTotal,
 }: {
   setFiveAndCoins: React.Dispatch<React.SetStateAction<number>>;
   setTotalTakings: React.Dispatch<React.SetStateAction<number>>;
   setFloat: React.Dispatch<React.SetStateAction<number>>;
+  setTillTotal: React.Dispatch<React.SetStateAction<number>>;
   float: number;
 }) => {
   // Value of coins/notes
@@ -51,17 +53,23 @@ const TillTotal = ({
         fiveAndCoins +
         totalTenPound +
         totalTwentyPound +
-        totalFiftyPound -
-        float
+        totalFiftyPound
       ).toFixed(2)
     );
 
-    setTotalTakings(tillTotal);
+    setTillTotal(tillTotal);
+
+    const totalTakings: number = Number((tillTotal - float).toFixed(2));
+
+    setTotalTakings(totalTakings);
   };
 
   return (
     <div>
-      <div className="md:border-r-2">
+      <div className="md:border-r-2 md:pr-3 md:border-black">
+        <h1 className="text-center mb-10 text-2xl font-semibold underline underline-offset-8">
+          Till Counter
+        </h1>
         <form onSubmit={handleSubmit}>
           <div className="">
             <CurrencyInput
@@ -156,7 +164,9 @@ const TillTotal = ({
               total={totalFiftyPound}
             />
           </div>
-          <Button type="submit">Submit</Button>
+          <Button className="w-full h-14" type="submit">
+            Submit
+          </Button>
         </form>
       </div>
     </div>

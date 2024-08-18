@@ -1,6 +1,7 @@
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { useEffect, useState } from "react";
+import { gbp } from "@/utils/utils";
 
 const CurrencyInput = ({
   setTotal,
@@ -20,11 +21,6 @@ const CurrencyInput = ({
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTotal(parseFloat((Number(e.target.value) * value).toFixed(2)));
   };
-
-  const gbp = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "GBP",
-  });
 
   useEffect(() => {
     setStringTotal(gbp.format(total));

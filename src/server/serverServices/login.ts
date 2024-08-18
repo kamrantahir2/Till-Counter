@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 import User from "../models/user";
 import dotenv from "dotenv";
 dotenv.config();
-import { LoggedInUser, Credentials } from "../types";
+import { LoggedInUser, Credentials } from "../../types";
 
 const login = async (credentials: Credentials): Promise<LoggedInUser> => {
   const { username, password } = credentials;

@@ -1,6 +1,6 @@
 import { Schema } from "mongoose";
 import mongoose from "mongoose";
-import { ITill } from "../types";
+import { ITill } from "../../types";
 
 const tillSchema = new Schema<ITill>({
   tillNumber: { type: Number, required: true },
