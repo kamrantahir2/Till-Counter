@@ -38,7 +38,7 @@ const CurrencyInput = ({
         id={currency}
         required={currency === "float"}
         placeholder={currency !== "float" ? `No. of ${label}` : `${label}`}
-        className="w-6/12"
+        className="w-6/12 text-md"
       />
 
       <Label className="leading-10 font-poppins ml-12">{stringTotal}</Label>
