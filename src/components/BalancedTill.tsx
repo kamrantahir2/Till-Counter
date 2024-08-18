@@ -2,6 +2,7 @@ import { gbp } from "@/utils/utils";
 import { Input } from "./ui/input";
 import { useState } from "react";
 import { Button } from "./ui/button";
+import { Label } from "./ui/label";
 
 const BalancedTill = ({
   totalTakings,
@@ -19,7 +20,6 @@ const BalancedTill = ({
 
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    console.log(expectedTotal);
   };
 
   // if (tillTotal === 0) {
@@ -29,7 +29,7 @@ const BalancedTill = ({
   //         Till Total
   //       </h1>
   //       <h1 className="text-xl italic">
-  //         *Till totals will show after submitting Till Counter form*
+  //         *Till totals will be shown after submitting Till Counter form*
   //       </h1>
   //     </div>
   //   );
@@ -61,8 +61,11 @@ const BalancedTill = ({
             step={0.01}
           />
         </div>
-        <Button type="submit">Submit</Button>
+        <Button className="w-full" type="submit">
+          Submit
+        </Button>
       </form>
+      <div className="h-12"></div>
     </div>
   );
 };

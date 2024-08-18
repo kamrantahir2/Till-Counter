@@ -164,7 +164,7 @@ const TillTotal = ({
               total={totalFiftyPound}
             />
           </div>
-          <Button className="w-full h-14" type="submit">
+          <Button className="w-full" type="submit">
             Submit
           </Button>
         </form>

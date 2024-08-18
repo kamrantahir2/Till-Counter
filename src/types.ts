@@ -15,7 +15,7 @@ export interface ITill {
   tillNumber: number;
   tillTotal: number;
   expectedTotal: number;
-  expectedVsTotal: number;
+  expectedVsTotal: string;
   date: string;
   user: mongoose.Schema.Types.ObjectId;
   additionalInfo?: string;

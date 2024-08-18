@@ -6,7 +6,7 @@ const tillSchema = new Schema<ITill>({
   tillNumber: { type: Number, required: true },
   tillTotal: { type: Number, required: true },
   expectedTotal: { type: Number, required: true },
-  expectedVsTotal: { type: Number, required: true },
+  expectedVsTotal: { type: String, required: true },
   date: { type: String, required: true },
   additionalInfo: { type: String },
   user: {
