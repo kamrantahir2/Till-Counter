@@ -4,7 +4,6 @@ import { useState } from "react";
 import { Button } from "./ui/button";
 import { Textarea } from "./ui/textarea";
 import { TillObject } from "@/types";
-import { Separator } from "@radix-ui/react-separator";
 
 const BalancedTill = ({
   totalTakings,
@@ -143,7 +142,7 @@ const BalancedTill = ({
               <h3 className="text-xl leading-10">Additional Info: </h3>
               <Textarea
                 placeholder="Additional Info"
-                onChange={(e) => e.target.value}
+                onChange={(e) => setAdditionalInfo(e.target.value)}
                 className="sm:w-7/12  ml-4 border-black"
               />
             </div>
