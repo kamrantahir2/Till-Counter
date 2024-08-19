@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button } from "./ui/button";
 import { Textarea } from "./ui/textarea";
 import { TillObject } from "@/types";
+import { Separator } from "@radix-ui/react-separator";
 
 const BalancedTill = ({
   totalTakings,
@@ -60,19 +61,19 @@ const BalancedTill = ({
     console.log(tillObject);
   };
 
-  // if (tillTotal === 0) {
-  //   return (
-  //     <div className="mx-auto md:mt-0 mt-4">
-  //       <h1 className="text-center mb-10 text-2xl font-semibold underline underline-offset-8">
-  //         Till Total
-  //       </h1>
-  //       <h1 className="text-2xl text-center italic">
-  //         *Till totals will be shown after submitting Till Counter form*
-  //       </h1>
-  //       <div className="h-12"></div>
-  //     </div>
-  //   );
-  // }
+  if (tillTotal === 0) {
+    return (
+      <div className="mx-auto md:mt-0 mt-4">
+        <h1 className="text-center mb-10 text-2xl font-semibold underline underline-offset-8">
+          Till Total
+        </h1>
+        <h1 className="text-2xl text-center italic">
+          *Till totals will be shown after submitting Till Counter form*
+        </h1>
+        <div className="h-12"></div>
+      </div>
+    );
+  }
 
   return (
     <div className="md:mx-auto md:mt-0 mt-4 font-poppins">
@@ -121,30 +122,37 @@ const BalancedTill = ({
         </div>
       )}
 
-      <form onSubmit={handleSave}>
-        <div className="mt-4 flex">
-          <h3 className="text-xl leading-10">Till Number: </h3>
-          <Input
-            type="number"
-            onChange={(e) => setTillNumber(Number(e.target.value))}
-            required
-            placeholder="Till Number"
-            className="w-6/12 ml-4"
-          />
+      {overUnderCalculated && (
+        <div className="mt-4">
+          <div className="sm:w-7/12 md:w-11/12 h-px my-9 mx-auto bg-black"></div>
+          <h2 className="text-center mb-10 text-2xl font-semibold underline underline-offset-8">
+            Save Till
+          </h2>
+          <form onSubmit={handleSave}>
+            <div className="mt-4 flex">
+              <h3 className="text-xl leading-10">Till Number: </h3>
+              <Input
+                type="number"
+                onChange={(e) => setTillNumber(Number(e.target.value))}
+                required
+                placeholder="Till Number"
+                className="w-6/12 ml-4"
+              />
+            </div>
+            <div className="mt-4 flex">
+              <h3 className="text-xl leading-10">Additional Info: </h3>
+              <Textarea
+                placeholder="Additional Info"
+                onChange={(e) => e.target.value}
+                className="sm:w-7/12  ml-4 border-black"
+              />
+            </div>
+            <Button className="w-full mt-4" type="submit">
+              Save Till
+            </Button>
+          </form>
         </div>
-        <div className="mt-4 flex">
-          <h3 className="text-xl leading-10">Additional Info: </h3>
-          <Textarea
-            placeholder="Additional Info"
-            onChange={(e) => e.target.value}
-            className="w-8/12 ml-4 border-black"
-          />
-        </div>
-        <Button className="w-full mt-4" type="submit">
-          Save Till
-        </Button>
-      </form>
-
+      )}
       <div className="h-12"></div>
     </div>
   );
