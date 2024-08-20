@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button } from "./ui/button";
 import { Textarea } from "./ui/textarea";
 import { TillObject } from "@/types";
+import tillService from "../service/tills";
 
 const BalancedTill = ({
   totalTakings,
@@ -48,16 +49,23 @@ const BalancedTill = ({
     setOverUnderCalculated(true);
   };
 
-  const handleSave = (e: React.SyntheticEvent) => {
+  const handleSave = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    const tillObject: TillObject = {
-      tillNumber: tillNumber,
-      tillTotal: totalTakings,
-      expectedTotal: expectedTotal,
-      expectedVsTotal: expectedVsTotal,
-      additionalInfo: additionalInfo,
-    };
-    console.log(tillObject);
+    try {
+      const tillObject: TillObject = {
+        tillNumber: tillNumber,
+        tillTotal: totalTakings,
+        expectedTotal: expectedTotal,
+        expectedVsTotal: expectedVsTotal,
+        additionalInfo: additionalInfo,
+      };
+
+      const savedTill = await tillService.create(tillObject);
+
+      console.log(savedTill);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   if (tillTotal === 0) {

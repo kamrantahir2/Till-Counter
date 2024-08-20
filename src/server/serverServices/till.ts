@@ -37,7 +37,6 @@ const tillTypeChecking = (till: any): till is ITill => {
     "tillTotal" in till &&
     "tillNumber" in till &&
     "date" in till &&
-    "user" in till &&
     "expectedTotal" in till
   ) {
     return true;
