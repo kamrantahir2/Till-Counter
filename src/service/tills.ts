@@ -20,4 +20,4 @@ const create = async (newObject: TillObjectWithDate) => {
   return response.data;
 };
 
-export default { create };
+export default { create, setToken };
