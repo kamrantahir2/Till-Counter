@@ -23,6 +23,8 @@ export interface ITill {
 
 export type TillObject = Omit<ITill, "user" | "date">;
 
+export type TillObjectWithDate = Omit<ITill, "user">;
+
 export interface CreatedUser extends IUser {
   id?: mongoose.Schema.Types.ObjectId;
 }

@@ -80,7 +80,7 @@ const createTill = async (
     date: till.date,
     user: user.id,
     additionalInfo: till.additionalInfo,
-    expectedVsTotal: Number(till.expectedVsTotal.toFixed(2)),
+    expectedVsTotal: till.expectedVsTotal,
   };
 
   const newTill = new Till(createdTill);
