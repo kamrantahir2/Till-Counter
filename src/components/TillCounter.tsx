@@ -1,8 +1,15 @@
 import TillTotal from "./TillTotal/TillTotal";
 import BalancedTill from "./BalancedTill";
 import { useState } from "react";
+import { User } from "@/types";
 
-const TillCounter = () => {
+const TillCounter = ({
+  user,
+  setUser,
+}: {
+  user: User | null;
+  setUser: React.Dispatch<React.SetStateAction<User | null>>;
+}) => {
   // totalTakings =  Till total minus float
   const [totalTakings, setTotalTakings] = useState(0);
   const [tillTotal, setTillTotal] = useState(0);
@@ -25,6 +32,7 @@ const TillCounter = () => {
           tillTotal={tillTotal}
           fiveAndCoins={fiveAndCoins}
           float={float}
+          user={user}
         />
       </div>
     </div>

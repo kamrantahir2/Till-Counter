@@ -5,17 +5,20 @@ import { Button } from "./ui/button";
 import { Textarea } from "./ui/textarea";
 import { TillObject } from "@/types";
 import tillService from "../service/tills";
+import { User } from "@/types";
 
 const BalancedTill = ({
   totalTakings,
   tillTotal,
   fiveAndCoins,
   float,
+  user,
 }: {
   totalTakings: number;
   tillTotal: number;
   fiveAndCoins: number;
   float: number;
+  user: User | null;
 }) => {
   const [expectedTotal, setExpectedTotal] = useState(0);
   const [expectedVsTotal, setExpectedVsTotal] = useState("");
@@ -154,10 +157,17 @@ const BalancedTill = ({
                 className="sm:w-7/12  ml-4 border-black"
               />
             </div>
-            <Button className="w-full mt-4" type="submit">
+            <Button disabled={!user} className="w-full mt-4" type="submit">
               Save Till
             </Button>
           </form>
+          {!user && (
+            <div className="flex">
+              <em className="text-lg mx-auto mt-1 font-medium">
+                Log in to save till
+              </em>
+            </div>
+          )}
         </div>
       )}
       <div className="h-12"></div>

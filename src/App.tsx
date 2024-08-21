@@ -10,7 +10,7 @@ function App() {
   return (
     <>
       <LoginForm user={user} setUser={setUser} />
-      <TillCounter />
+      <TillCounter user={user} setUser={setUser} />
     </>
   );
 }
