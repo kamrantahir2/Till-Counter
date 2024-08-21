@@ -36,6 +36,7 @@ const LoginForm = () => {
 
   const handleLogout = () => {
     userContext.setUser(null);
+    window.localStorage.removeItem("loggedInUser");
   };
 
   if (!userContext.user) {
