@@ -3,17 +3,25 @@ import { useState } from "react";
 import { Button } from "./ui/button";
 import loginService from "../service/login";
 import tillService from "../service/tills";
-import { User } from "@/types";
+import { UserContext } from "@/App";
+import { useContext } from "react";
 
-const LoginForm = ({
-  user,
-  setUser,
-}: {
-  user: User | null;
-  setUser: React.Dispatch<React.SetStateAction<User | null>>;
-}) => {
+// const LoginForm = ({
+//   user,
+//   setUser,
+// }: {
+//   user: User | null;
+//   setUser: React.Dispatch<React.SetStateAction<User | null>>;
+// }) => {
+const LoginForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  const userContext = useContext(UserContext);
+
+  if (!userContext) {
+    throw new Error("UserContext cannot be null");
+  }
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -23,14 +31,14 @@ const LoginForm = ({
 
     window.localStorage.setItem("loggedInUser", JSON.stringify(user));
 
-    setUser(user);
+    userContext.setUser(user);
   };
 
   const handleLogout = () => {
-    setUser(null);
+    userContext.setUser(null);
   };
 
-  if (!user) {
+  if (!userContext.user) {
     return (
       <div>
         <form onSubmit={handleSubmit}>
@@ -61,7 +69,7 @@ const LoginForm = ({
   } else {
     return (
       <div>
-        <em>{user.username} logged in</em>
+        <em>{userContext.user.username} logged in</em>
         <Button className="ml-4" onClick={handleLogout}>
           Logout
         </Button>
