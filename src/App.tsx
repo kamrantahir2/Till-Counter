@@ -9,7 +9,7 @@ function App() {
 
   return (
     <>
-      <LoginForm user={user} />
+      <LoginForm user={user} setUser={setUser} />
       <TillCounter />
     </>
   );
