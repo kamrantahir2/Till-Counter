@@ -21,6 +21,22 @@ export interface ITill {
   additionalInfo?: string;
 }
 
+export interface Till {
+  date: string;
+  expectedTotal: number;
+  expectedVsTotal: string;
+  id: string;
+  tillNumber: number;
+  tillTotal: number;
+}
+
+export interface User {
+  id: string;
+  tills: Till[];
+  token: string;
+  username: string;
+}
+
 export type TillObject = Omit<ITill, "user" | "date">;
 
 export type TillObjectWithDate = Omit<ITill, "user">;

@@ -2,16 +2,22 @@ import { Input } from "./ui/input";
 import { useState } from "react";
 import { Button } from "./ui/button";
 import loginService from "../service/login";
+import tillService from "../service/tills";
+import { User } from "@/types";
 
-const LoginForm = () => {
+const LoginForm = ({ user }: { user: User | null }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    const result = await loginService.login({ username, password });
+    const user = await loginService.login({ username, password });
 
-    console.log(result);
+    tillService.setToken(user.token);
+
+    window.localStorage.setItem("loggedInUser", JSON.stringify(user));
+
+    console.log(user);
   };
 
   return (
