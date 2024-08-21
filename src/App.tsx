@@ -7,6 +7,15 @@ import { User } from "./types";
 function App() {
   const [user, setUser] = useState<User | null>(null);
 
+  useEffect(() => {
+    const loggedInUser = window.localStorage.getItem("loggedInUser");
+
+    if (loggedInUser) {
+      const user = JSON.parse(loggedInUser);
+      setUser(user);
+    }
+  }, []);
+
   return (
     <>
       <LoginForm user={user} setUser={setUser} />
