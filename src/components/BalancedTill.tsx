@@ -5,26 +5,31 @@ import { Button } from "./ui/button";
 import { Textarea } from "./ui/textarea";
 import { TillObject } from "@/types";
 import tillService from "../service/tills";
-import { User } from "@/types";
+import { useContext } from "react";
+import { UserContext } from "@/App";
 
 const BalancedTill = ({
   totalTakings,
   tillTotal,
   fiveAndCoins,
   float,
-  user,
 }: {
   totalTakings: number;
   tillTotal: number;
   fiveAndCoins: number;
   float: number;
-  user: User | null;
 }) => {
   const [expectedTotal, setExpectedTotal] = useState(0);
   const [expectedVsTotal, setExpectedVsTotal] = useState("");
   const [overUnderCalculated, setOverUnderCalculated] = useState(false);
   const [tillNumber, setTillNumber] = useState(0);
   const [additionalInfo, setAdditionalInfo] = useState("");
+
+  const userContext = useContext(UserContext);
+
+  if (!userContext) {
+    throw new Error("UserContext cannot be null");
+  }
 
   const overUnder = (): string => {
     const diff: number = Number((totalTakings - expectedTotal).toFixed(2));
@@ -157,11 +162,15 @@ const BalancedTill = ({
                 className="sm:w-7/12  ml-4 border-black"
               />
             </div>
-            <Button disabled={!user} className="w-full mt-4" type="submit">
+            <Button
+              disabled={!userContext.user}
+              className="w-full mt-4"
+              type="submit"
+            >
               Save Till
             </Button>
           </form>
-          {!user && (
+          {!userContext.user && (
             <div className="flex">
               <em className="text-lg mx-auto mt-1 font-medium">
                 Log in to save till

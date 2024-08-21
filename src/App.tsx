@@ -23,7 +23,7 @@ function App() {
   return (
     <UserContext.Provider value={{ user, setUser }}>
       <LoginForm />
-      <TillCounter user={user} setUser={setUser} />
+      <TillCounter />
     </UserContext.Provider>
   );
 }
