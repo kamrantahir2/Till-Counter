@@ -7,6 +7,12 @@ import { TillObject } from "@/types";
 import tillService from "../service/tills";
 import { useContext } from "react";
 import { UserContext } from "@/App";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "./ui/tooltip";
 
 const BalancedTill = ({
   totalTakings,
@@ -162,19 +168,30 @@ const BalancedTill = ({
                 className="sm:w-7/12  ml-4 border-black"
               />
             </div>
-            <Button
-              disabled={!userContext.user}
-              className="w-full mt-4"
-              type="submit"
-            >
-              Save Till
-            </Button>
+            {userContext.user && (
+              <Button
+                disabled={!userContext.user}
+                className="w-full mt-4"
+                type="submit"
+              >
+                Save Till
+              </Button>
+            )}
           </form>
           {!userContext.user && (
-            <div className="flex">
-              <em className="text-lg mx-auto mt-1 font-medium">
-                Log in to save till
-              </em>
+            <div className="">
+              <TooltipProvider>
+                <Tooltip delayDuration={0}>
+                  <TooltipTrigger asChild className="!pointer-events-auto">
+                    <Button disabled className="w-full mt-4">
+                      Save Till
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent side="bottom">
+                    <p className="font-semibold text-md">Log in to save till</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
             </div>
           )}
         </div>
