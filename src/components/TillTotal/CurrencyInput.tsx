@@ -39,6 +39,7 @@ const CurrencyInput = ({
         required={currency === "float"}
         placeholder={currency !== "float" ? `No. of ${label}` : `${label}`}
         className="w-6/12 text-md"
+        onWheel={(_e) => (document.activeElement as HTMLElement).blur()}
       />
 
       <Label className="leading-10 font-poppins ml-12">{stringTotal}</Label>

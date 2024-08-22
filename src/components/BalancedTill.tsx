@@ -125,6 +125,7 @@ const BalancedTill = ({
             onChange={(e) => setExpectedTotal(Number(e.target.value))}
             required
             step={0.01}
+            onWheel={(_e) => (document.activeElement as HTMLElement).blur()}
           />
         </div>
         <Button className="w-full mt-4" type="submit">
@@ -158,6 +159,7 @@ const BalancedTill = ({
                 required
                 placeholder="Till Number"
                 className="w-6/12 ml-4"
+                onWheel={(_e) => (document.activeElement as HTMLElement).blur()}
               />
             </div>
             <div className="mt-4 flex">
