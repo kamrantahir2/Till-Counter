@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import CurrencyInput from "./CurrencyInput";
 
@@ -28,6 +28,12 @@ const TillTotal = ({
   const [totalTenPound, setTotalTenPound] = useState(0);
   const [totalTwentyPound, setTotalTwentyPound] = useState(0);
   const [totalFiftyPound, setTotalFiftyPound] = useState(0);
+
+  useEffect(() => {
+    if (window.localStorage.getItem("tillCounterFloat") !== "") {
+      setFloat(Number(window.localStorage.getItem("tillCounterFloat")));
+    }
+  }, []);
 
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -64,6 +70,10 @@ const TillTotal = ({
     setTotalTakings(totalTakings);
   };
 
+  const handleSaveFloat = () => {
+    window.localStorage.setItem("tillCounterFloat", float.toString());
+  };
+
   return (
     <div>
       <div className="md:border-r-2 md:pr-3 md:border-black">
@@ -72,13 +82,23 @@ const TillTotal = ({
         </h1>
         <form onSubmit={handleSubmit}>
           <div className="">
-            <CurrencyInput
-              label="Float"
-              currency="float"
-              setTotal={setFloat}
-              total={float}
-              value={1}
-            />
+            <div>
+              <CurrencyInput
+                label="Float"
+                currency="float"
+                setTotal={setFloat}
+                total={float}
+                value={1}
+              />
+              <div className="grid grid-cols-2 gap-4">
+                <Button onClick={handleSaveFloat} className="w-full mb-4">
+                  Save Float
+                </Button>
+                <Button onClick={handleSaveFloat} className="w-full mb-4">
+                  Delete Float
+                </Button>
+              </div>
+            </div>
             <CurrencyInput
               label="1p Coins"
               currency="1p"

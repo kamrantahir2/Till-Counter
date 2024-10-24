@@ -17,6 +17,16 @@ const CurrencyInput = ({
   total: number;
 }) => {
   const [stringTotal, setStringTotal] = useState("");
+  let saved = 0;
+
+  useEffect(() => {
+    if (
+      currency === "float" &&
+      window.localStorage.getItem("tillCounterFloat") !== ""
+    ) {
+      saved = Number(window.localStorage.getItem("tillCounterFloat"));
+    }
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTotal(parseFloat((Number(e.target.value) * value).toFixed(2)));
