@@ -28,10 +28,14 @@ const TillTotal = ({
   const [totalTenPound, setTotalTenPound] = useState(0);
   const [totalTwentyPound, setTotalTwentyPound] = useState(0);
   const [totalFiftyPound, setTotalFiftyPound] = useState(0);
+  const [floatSaved, setFloatSaved] = useState(false);
 
   useEffect(() => {
-    if (window.localStorage.getItem("tillCounterFloat") !== "") {
+    if (window.localStorage.getItem("tillCounterFloat") !== null) {
       setFloat(Number(window.localStorage.getItem("tillCounterFloat")));
+      setFloatSaved(true);
+    } else {
+      setFloatSaved(false);
     }
   }, []);
 
@@ -72,11 +76,16 @@ const TillTotal = ({
 
   const handleSaveFloat = () => {
     window.localStorage.setItem("tillCounterFloat", float.toString());
+    setFloatSaved(true);
   };
 
   const handleRemoveFloat = () => {
     window.localStorage.removeItem("tillCounterFloat");
+    setFloat(0);
+    setFloatSaved(false);
   };
+
+  console.log(floatSaved);
 
   return (
     <div>
@@ -94,13 +103,17 @@ const TillTotal = ({
                 total={float}
                 value={1}
               />
-              <div className="grid grid-cols-2 gap-4">
-                <Button onClick={handleSaveFloat} className="w-full mb-4">
-                  Save Float
-                </Button>
-                <Button onClick={handleRemoveFloat} className="w-full mb-4">
-                  Delete Float
-                </Button>
+              <div className="">
+                {!floatSaved && (
+                  <Button onClick={handleSaveFloat} className="w-full mb-4">
+                    Save Float
+                  </Button>
+                )}
+                {floatSaved && (
+                  <Button onClick={handleRemoveFloat} className="w-full mb-4">
+                    Delete Float
+                  </Button>
+                )}
               </div>
             </div>
             <CurrencyInput

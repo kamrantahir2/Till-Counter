@@ -19,7 +19,14 @@ const CurrencyInput = ({
   const [stringTotal, setStringTotal] = useState("");
   let saved = Number(window.localStorage.getItem("tillCounterFloat"));
 
-  console.log(window.localStorage.getItem("tillCounterFloat"));
+  useEffect(() => {
+    if (
+      currency === "float" &&
+      window.localStorage.getItem("tillCounterFloat") !== null
+    ) {
+      saved = Number(window.localStorage.getItem("tillCounterFloat"));
+    }
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTotal(parseFloat((Number(e.target.value) * value).toFixed(2)));
@@ -28,6 +35,15 @@ const CurrencyInput = ({
   useEffect(() => {
     setStringTotal(gbp.format(total));
   }, [total]);
+
+  if (currency === "float" && saved !== 0) {
+    return (
+      <div className="h-10 font-poppins">
+        <Label className="text-xl">Saved Float:</Label>
+        <Label className="text-xl ml-4">£{saved}</Label>
+      </div>
+    );
+  }
 
   return (
     <div className="flex h-10 mb-4 ">
@@ -43,7 +59,6 @@ const CurrencyInput = ({
         placeholder={currency !== "float" ? `No. of ${label}` : `${label}`}
         className="w-6/12 text-md"
         onWheel={(_e) => (document.activeElement as HTMLElement).blur()}
-        value={currency === "float" && saved !== 0 ? saved : ""}
       />
 
       <Label className="leading-10 font-poppins ml-12">{stringTotal}</Label>
