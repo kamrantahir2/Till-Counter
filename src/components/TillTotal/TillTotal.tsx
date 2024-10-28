@@ -74,6 +74,10 @@ const TillTotal = ({
     window.localStorage.setItem("tillCounterFloat", float.toString());
   };
 
+  const handleRemoveFloat = () => {
+    window.localStorage.removeItem("tillCounterFloat");
+  };
+
   return (
     <div>
       <div className="md:border-r-2 md:pr-3 md:border-black">
@@ -94,7 +98,7 @@ const TillTotal = ({
                 <Button onClick={handleSaveFloat} className="w-full mb-4">
                   Save Float
                 </Button>
-                <Button onClick={handleSaveFloat} className="w-full mb-4">
+                <Button onClick={handleRemoveFloat} className="w-full mb-4">
                   Delete Float
                 </Button>
               </div>
