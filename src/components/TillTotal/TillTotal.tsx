@@ -85,8 +85,6 @@ const TillTotal = ({
     setFloatSaved(false);
   };
 
-  console.log(floatSaved);
-
   return (
     <div>
       <div className="md:border-r-2 md:pr-3 md:border-black">
@@ -110,7 +108,7 @@ const TillTotal = ({
                   </Button>
                 )}
                 {floatSaved && (
-                  <Button onClick={handleRemoveFloat} className="w-full mb-4">
+                  <Button onClick={handleRemoveFloat} className="aw-full mb-4">
                     Delete Float
                   </Button>
                 )}

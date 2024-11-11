@@ -61,7 +61,9 @@ const CurrencyInput = ({
         onWheel={(_e) => (document.activeElement as HTMLElement).blur()}
       />
 
-      <Label className="leading-10 font-poppins ml-12">{stringTotal}</Label>
+      <Label className="leading-10 lg:w-40 font-poppins ml-12">
+        {stringTotal}
+      </Label>
     </div>
   );
 };
