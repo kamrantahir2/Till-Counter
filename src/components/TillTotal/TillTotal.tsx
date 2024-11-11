@@ -8,12 +8,16 @@ const TillTotal = ({
   setFloat,
   float,
   setTillTotal,
+  setOverUnderCalculated,
+  setExpectedVsTotal,
 }: {
   setFiveAndCoins: React.Dispatch<React.SetStateAction<number>>;
   setTotalTakings: React.Dispatch<React.SetStateAction<number>>;
   setFloat: React.Dispatch<React.SetStateAction<number>>;
   setTillTotal: React.Dispatch<React.SetStateAction<number>>;
   float: number;
+  setOverUnderCalculated: React.Dispatch<React.SetStateAction<boolean>>;
+  setExpectedVsTotal: React.Dispatch<React.SetStateAction<string>>;
 }) => {
   // Value of coins/notes
   const [totalOneP, setTotalOneP] = useState(0);
@@ -38,6 +42,26 @@ const TillTotal = ({
       setFloatSaved(false);
     }
   }, []);
+
+  const handleReset = () => {
+    setTotalOneP(0);
+    setTotalTwoP(0);
+    setTotalFiveP(0);
+    setTotalTenP(0);
+    setTotalTwentyP(0);
+    setTotalFiftyP(0);
+    setTotalOnePound(0);
+    setTotalTwoPound(0);
+    setTotalFivePound(0);
+    setTotalTenPound(0);
+    setTotalTwentyPound(0);
+    setTotalFiftyPound(0);
+    setFiveAndCoins(0);
+    setTotalTakings(0);
+    setTillTotal(0);
+    setExpectedVsTotal("");
+    setOverUnderCalculated(false);
+  };
 
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -108,7 +132,10 @@ const TillTotal = ({
                   </Button>
                 )}
                 {floatSaved && (
-                  <Button onClick={handleRemoveFloat} className="w-full mb-4">
+                  <Button
+                    onClick={handleRemoveFloat}
+                    className="w-full mb-4 text-md"
+                  >
                     Delete Float
                   </Button>
                 )}
@@ -199,8 +226,14 @@ const TillTotal = ({
               total={totalFiftyPound}
             />
           </div>
-          <Button className="w-full " type="submit">
+          <Button className="w-full text-md" type="submit">
             Submit
+          </Button>
+          <Button
+            className="w-full mt-6 bg-red-600 text-md"
+            onClick={handleReset}
+          >
+            Reset
           </Button>
         </form>
       </div>

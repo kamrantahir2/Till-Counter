@@ -19,17 +19,23 @@ const BalancedTill = ({
   tillTotal,
   fiveAndCoins,
   float,
+  expectedVsTotal,
+  setExpectedVsTotal,
+  overUnderCalculated,
+  setOverUnderCalculated,
 }: {
   totalTakings: number;
   tillTotal: number;
   fiveAndCoins: number;
   float: number;
+  overUnderCalculated: boolean;
+  setOverUnderCalculated: React.Dispatch<React.SetStateAction<boolean>>;
+  expectedVsTotal: string;
+  setExpectedVsTotal: React.Dispatch<React.SetStateAction<string>>;
 }) => {
-  const [expectedTotal, setExpectedTotal] = useState(0);
-  const [expectedVsTotal, setExpectedVsTotal] = useState("");
-  const [overUnderCalculated, setOverUnderCalculated] = useState(false);
   const [tillNumber, setTillNumber] = useState(0);
   const [additionalInfo, setAdditionalInfo] = useState("");
+  const [expectedTotal, setExpectedTotal] = useState(0);
 
   const userContext = useContext(UserContext);
 
@@ -128,7 +134,7 @@ const BalancedTill = ({
             onWheel={(_e) => (document.activeElement as HTMLElement).blur()}
           />
         </div>
-        <Button className="w-full mt-4" type="submit">
+        <Button className="w-full mt-4 text-md" type="submit">
           Submit
         </Button>
       </form>
@@ -173,7 +179,7 @@ const BalancedTill = ({
             {userContext.user && (
               <Button
                 disabled={!userContext.user}
-                className="w-full mt-4"
+                className="w-full mt-4 text-md"
                 type="submit"
               >
                 Save Till

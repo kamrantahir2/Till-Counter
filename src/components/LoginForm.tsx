@@ -63,7 +63,9 @@ const LoginForm = () => {
             />
           </div>
 
-          <Button type="submit">Login</Button>
+          <Button className="text-md" type="submit">
+            Login
+          </Button>
         </form>
       </div>
     );
@@ -71,7 +73,7 @@ const LoginForm = () => {
     return (
       <div>
         <em>{userContext.user.username} logged in</em>
-        <Button className="ml-4" onClick={handleLogout}>
+        <Button className="ml-4 text-md" onClick={handleLogout}>
           Logout
         </Button>
       </div>

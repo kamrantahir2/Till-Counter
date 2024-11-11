@@ -7,8 +7,9 @@ const TillCounter = () => {
   const [totalTakings, setTotalTakings] = useState(0);
   const [tillTotal, setTillTotal] = useState(0);
   const [fiveAndCoins, setFiveAndCoins] = useState(0);
-
   const [float, setFloat] = useState(0);
+  const [expectedVsTotal, setExpectedVsTotal] = useState("");
+  const [overUnderCalculated, setOverUnderCalculated] = useState(false);
 
   return (
     <div>
@@ -19,12 +20,18 @@ const TillCounter = () => {
           float={float}
           setFloat={setFloat}
           setTillTotal={setTillTotal}
+          setExpectedVsTotal={setExpectedVsTotal}
+          setOverUnderCalculated={setOverUnderCalculated}
         />
         <BalancedTill
           totalTakings={totalTakings}
           tillTotal={tillTotal}
           fiveAndCoins={fiveAndCoins}
           float={float}
+          expectedVsTotal={expectedVsTotal}
+          setExpectedVsTotal={setExpectedVsTotal}
+          overUnderCalculated={overUnderCalculated}
+          setOverUnderCalculated={setOverUnderCalculated}
         />
       </div>
     </div>

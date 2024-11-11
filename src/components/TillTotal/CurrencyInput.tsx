@@ -59,6 +59,7 @@ const CurrencyInput = ({
         placeholder={currency !== "float" ? `No. of ${label}` : `${label}`}
         className="w-6/12 text-md"
         onWheel={(_e) => (document.activeElement as HTMLElement).blur()}
+        value={total === 0 ? "" : Math.round(total / value)}
       />
 
       <Label className="leading-10 lg:w-40 font-poppins ml-12">
