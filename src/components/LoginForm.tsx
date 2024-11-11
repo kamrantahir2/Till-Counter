@@ -46,7 +46,7 @@ const LoginForm = () => {
           <div className="mt-4 flex">
             <h3 className="leading-10">Username: </h3>
             <Input
-              className="w-6/12 ml-2"
+              className="w-6/12 md:w-4/12 ml-2"
               placeholder="Username"
               onChange={(e) => setUsername(e.target.value)}
               required
@@ -55,7 +55,7 @@ const LoginForm = () => {
           <div className="mt-4 flex">
             <h3 className="leading-10">Password: </h3>
             <Input
-              className="w-6/12 ml-2"
+              className="w-6/12 md:w-4/12 ml-2"
               placeholder="Password"
               onChange={(e) => setPassword(e.target.value)}
               type="password"
