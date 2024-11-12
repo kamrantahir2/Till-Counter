@@ -1,6 +1,6 @@
 import axios from "axios";
 const baseUrl = "/api/till";
-import { TillObjectWithDate, TillObject } from "@/types";
+import { TillObjectWithDate, TillObject, PopulatedTill } from "@/types";
 import { currentDate } from "../utils/utils";
 
 let token: string = "";
@@ -25,9 +25,15 @@ const create = async (newObject: TillObject) => {
   return response.data;
 };
 
-const getAll = async () => {
+const getAll = async (username: string | undefined) => {
   const response = await axios.get(baseUrl);
-  return response.data;
+  const data = response.data;
+
+  const filtered = data.filter(
+    (till: PopulatedTill) => till.user.username === username
+  );
+
+  return filtered;
 };
 
 export default { create, setToken, getAll };

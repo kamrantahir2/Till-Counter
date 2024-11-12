@@ -5,11 +5,17 @@ import { useState, useEffect } from "react";
 import { User } from "./types";
 import { createContext } from "react";
 import { UserContextType } from "./types";
+import tillService from "./service/tills";
+import { PopulatedTill } from "./types";
+import { TillContextType } from "./types";
 
 export const UserContext = createContext<UserContextType | null>(null);
 
+export const TillContext = createContext<TillContextType | null>(null);
+
 function App() {
   const [user, setUser] = useState<User | null>(null);
+  const [tills, setTills] = useState<PopulatedTill[]>([]);
 
   useEffect(() => {
     const loggedInUser = window.localStorage.getItem("loggedInUser");
@@ -20,10 +26,16 @@ function App() {
     }
   }, []);
 
+  useEffect(() => {
+    tillService.getAll(user?.username).then((data) => setTills(data));
+  }, [user]);
+
   return (
     <UserContext.Provider value={{ user, setUser }}>
-      <LoginForm />
-      <TillCounter />
+      <TillContext.Provider value={{ tills, setTills }}>
+        <LoginForm />
+        <TillCounter />
+      </TillContext.Provider>
     </UserContext.Provider>
   );
 }

@@ -65,3 +65,15 @@ export interface UserContextType {
   user: User | null;
   setUser: React.Dispatch<React.SetStateAction<User | null>>;
 }
+
+export interface TillContextType {
+  tills: PopulatedTill[] | [];
+  setTills: React.Dispatch<React.SetStateAction<PopulatedTill[] | []>>;
+}
+
+export interface PopulatedTill extends Till {
+  user: {
+    username: string;
+    id: string;
+  };
+}

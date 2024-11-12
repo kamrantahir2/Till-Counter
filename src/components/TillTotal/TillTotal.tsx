@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import CurrencyInput from "./CurrencyInput";
-import tillService from "../../service/tills";
+import { useContext } from "react";
+import { TillContext } from "@/App";
 
 const TillTotal = ({
   setFiveAndCoins,
@@ -35,6 +36,8 @@ const TillTotal = ({
   const [totalFiftyPound, setTotalFiftyPound] = useState(0);
   const [floatSaved, setFloatSaved] = useState(false);
 
+  const tillContext = useContext(TillContext);
+
   useEffect(() => {
     if (window.localStorage.getItem("tillCounterFloat") !== null) {
       setFloat(Number(window.localStorage.getItem("tillCounterFloat")));
@@ -43,16 +46,6 @@ const TillTotal = ({
       setFloatSaved(false);
     }
   }, []);
-
-  useEffect(() => {
-    handleGet();
-  }, []);
-
-  const handleGet = async () => {
-    const data = await tillService.getAll();
-
-    console.log(data);
-  };
 
   const handleReset = () => {
     setTotalOneP(0);
