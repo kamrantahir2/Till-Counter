@@ -17,7 +17,10 @@ const getTokenFrom = (request: Request) => {
 };
 
 const getAllTills = async (): Promise<CreatedTill[]> => {
-  const data = await Till.find({});
+  const data = await Till.find({}).populate("user", {
+    id: 1,
+    username: 1,
+  });
 
   return data;
 };

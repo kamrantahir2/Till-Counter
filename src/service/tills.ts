@@ -25,4 +25,9 @@ const create = async (newObject: TillObject) => {
   return response.data;
 };
 
-export default { create, setToken };
+const getAll = async () => {
+  const response = await axios.get(baseUrl);
+  return response.data;
+};
+
+export default { create, setToken, getAll };

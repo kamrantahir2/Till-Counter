@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import CurrencyInput from "./CurrencyInput";
+import tillService from "../../service/tills";
 
 const TillTotal = ({
   setFiveAndCoins,
@@ -42,6 +43,16 @@ const TillTotal = ({
       setFloatSaved(false);
     }
   }, []);
+
+  useEffect(() => {
+    handleGet();
+  }, []);
+
+  const handleGet = async () => {
+    const data = await tillService.getAll();
+
+    console.log(data);
+  };
 
   const handleReset = () => {
     setTotalOneP(0);
