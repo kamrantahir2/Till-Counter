@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import CurrencyInput from "./CurrencyInput";
-import { useContext } from "react";
-import { TillContext } from "@/App";
 
 const TillTotal = ({
   setFiveAndCoins,
@@ -35,8 +33,6 @@ const TillTotal = ({
   const [totalTwentyPound, setTotalTwentyPound] = useState(0);
   const [totalFiftyPound, setTotalFiftyPound] = useState(0);
   const [floatSaved, setFloatSaved] = useState(false);
-
-  const tillContext = useContext(TillContext);
 
   useEffect(() => {
     if (window.localStorage.getItem("tillCounterFloat") !== null) {
