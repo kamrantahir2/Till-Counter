@@ -26,7 +26,10 @@ const getAllTills = async (): Promise<CreatedTill[]> => {
 };
 
 const getTillById = async (id: string): Promise<CreatedTill> => {
-  const data = await Till.findById(id);
+  const data = await Till.findById(id).populate("user", {
+    id: 1,
+    username: 1,
+  });
 
   if (data === null) {
     throw new Error("till not found");
