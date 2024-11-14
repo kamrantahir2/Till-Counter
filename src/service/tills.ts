@@ -20,6 +20,7 @@ const create = async (newObject: TillObject) => {
     ...newObject,
     date: currentDate,
   };
+
   const response = await axios.post(baseUrl, tillWithDate, config());
 
   return response.data;

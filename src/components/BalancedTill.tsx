@@ -13,6 +13,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "./ui/tooltip";
+import { toast } from "sonner";
 
 const BalancedTill = ({
   totalTakings,
@@ -81,6 +82,8 @@ const BalancedTill = ({
       };
 
       const savedTill = await tillService.create(tillObject);
+
+      toast("Till has been saved");
 
       console.log(savedTill);
     } catch (error) {

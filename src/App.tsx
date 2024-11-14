@@ -8,6 +8,7 @@ import { UserContextType } from "./types";
 import tillService from "./service/tills";
 import { PopulatedTill } from "./types";
 import { TillContextType } from "./types";
+import { Toaster } from "sonner";
 
 export const UserContext = createContext<UserContextType | null>(null);
 
@@ -35,6 +36,7 @@ function App() {
       <TillContext.Provider value={{ tills, setTills }}>
         <LoginForm />
         <TillCounter />
+        <Toaster />
       </TillContext.Provider>
     </UserContext.Provider>
   );
