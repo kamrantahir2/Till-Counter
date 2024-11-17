@@ -23,6 +23,9 @@ function App() {
 
     if (loggedInUser) {
       const user = JSON.parse(loggedInUser);
+
+      tillService.setToken(user.token);
+
       setUser(user);
     }
   }, []);
