@@ -11,6 +11,8 @@ import { TillContextType } from "./types";
 import { Toaster } from "sonner";
 import { Routes, Route, Link } from "react-router-dom";
 
+import Table from "./components/Table/page";
+
 export const UserContext = createContext<UserContextType | null>(null);
 
 export const TillContext = createContext<TillContextType | null>(null);

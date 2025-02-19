@@ -1,7 +1,7 @@
 import { ColumnDef } from "@tanstack/react-table";
-import { TillObject } from "@/types";
+import { PopulatedTill } from "@/types";
 
-export const columns: ColumnDef<TillObject>[] = [
+export const columns: ColumnDef<PopulatedTill>[] = [
   {
     accessorKey: "date",
     header: "Date",
