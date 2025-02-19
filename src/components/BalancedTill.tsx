@@ -14,6 +14,7 @@ import {
   TooltipTrigger,
 } from "./ui/tooltip";
 import { toast } from "sonner";
+import { TillContext } from "@/App";
 
 const BalancedTill = ({
   totalTakings,
@@ -39,6 +40,7 @@ const BalancedTill = ({
   const [expectedTotal, setExpectedTotal] = useState(0);
 
   const userContext = useContext(UserContext);
+  const tillContext = useContext(TillContext);
 
   if (!userContext) {
     throw new Error("UserContext cannot be null");
@@ -82,6 +84,8 @@ const BalancedTill = ({
       };
 
       const savedTill = await tillService.create(tillObject);
+
+      tillContext?.setTills(tillContext.tills.concat(savedTill));
 
       toast("Till has been saved");
 
