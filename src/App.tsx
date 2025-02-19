@@ -9,6 +9,7 @@ import tillService from "./service/tills";
 import { PopulatedTill } from "./types";
 import { TillContextType } from "./types";
 import { Toaster } from "sonner";
+import { Routes, Route, Link } from "react-router-dom";
 
 export const UserContext = createContext<UserContextType | null>(null);
 
@@ -37,8 +38,17 @@ function App() {
   return (
     <UserContext.Provider value={{ user, setUser }}>
       <TillContext.Provider value={{ tills, setTills }}>
+        <div>
+          <Link className="text-xl font-medium underline text-blue-500" to="/">
+            Tills
+          </Link>
+        </div>
+
         <LoginForm />
-        <TillCounter />
+
+        <Routes>
+          <Route path="/" element={<TillCounter />} />
+        </Routes>
         <Toaster />
       </TillContext.Provider>
     </UserContext.Provider>
