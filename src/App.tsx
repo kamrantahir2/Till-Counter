@@ -40,9 +40,15 @@ function App() {
   return (
     <UserContext.Provider value={{ user, setUser }}>
       <TillContext.Provider value={{ tills, setTills }}>
-        <div>
+        <div className="mb-4 flex justify-around bg-black">
           <Link className="text-xl font-medium underline text-blue-500" to="/">
             Tills
+          </Link>
+          <Link
+            to="/table"
+            className="text-xl font-medium underline text-blue-500"
+          >
+            Table
           </Link>
         </div>
 
@@ -50,6 +56,7 @@ function App() {
 
         <Routes>
           <Route path="/" element={<TillCounter />} />
+          <Route path="/table" element={<Table />} />
         </Routes>
         <Toaster />
       </TillContext.Provider>
