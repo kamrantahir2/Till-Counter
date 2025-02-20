@@ -6,6 +6,7 @@ import { Button } from "../ui/button";
 export const columns: ColumnDef<PopulatedTill>[] = [
   {
     accessorKey: "date",
+
     header: ({ column }) => {
       return (
         <Button
@@ -17,7 +18,7 @@ export const columns: ColumnDef<PopulatedTill>[] = [
         </Button>
       );
     },
-    sortDescFirst: true,
+
     sortingFn: "dateSort",
   },
   {

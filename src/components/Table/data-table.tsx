@@ -35,7 +35,6 @@ export function DataTable<TData, TValue>({
     onSortingChange: setSorting,
     getSortedRowModel: getSortedRowModel(),
     sortingFns: {
-      //add a custom sorting function
       dateSort: (rowA, rowB) => {
         const rowAReversed = rowA.original.date.split("-").reverse();
 
@@ -60,17 +59,12 @@ export function DataTable<TData, TValue>({
             }
           }
         }
-
-        return rowAReversed < rowBReversed
-          ? 1
-          : rowAReversed > rowBReversed
-          ? -1
-          : 0;
       },
     },
     state: {
       sorting,
     },
+    sortDescFirst: true,
   });
 
   return (
