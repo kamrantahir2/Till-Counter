@@ -6,7 +6,7 @@ import { TillContext } from "@/App";
 export default function Table() {
   const tillContext = useContext(TillContext);
 
-  const data = tillContext?.tills;
+  const data = tillContext?.tills.reverse();
 
   return (
     <div className="container mx-auto py-10">
