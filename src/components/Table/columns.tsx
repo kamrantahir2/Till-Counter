@@ -17,7 +17,8 @@ export const columns: ColumnDef<PopulatedTill>[] = [
         </Button>
       );
     },
-    sortingFn: "datetime",
+    sortDescFirst: true,
+    sortingFn: "dateSort",
   },
   {
     accessorKey: "tillNumber",

@@ -34,6 +34,40 @@ export function DataTable<TData, TValue>({
     getCoreRowModel: getCoreRowModel(),
     onSortingChange: setSorting,
     getSortedRowModel: getSortedRowModel(),
+    sortingFns: {
+      //add a custom sorting function
+      dateSort: (rowA, rowB) => {
+        const rowAReversed = rowA.original.date.split("-").reverse();
+
+        const rowBReversed = rowB.original.date.split("-").reverse();
+
+        if (rowAReversed[0] < rowBReversed[0]) {
+          return 1;
+        } else if (rowAReversed[0] > rowBReversed[0]) {
+          return -1;
+        } else {
+          if (rowAReversed[1] < rowBReversed[1]) {
+            return -1;
+          } else if (rowAReversed[1] > rowBReversed[1]) {
+            return 1;
+          } else {
+            if (rowAReversed[2] < rowBReversed[2]) {
+              return 1;
+            } else if (rowAReversed[2] > rowBReversed[2]) {
+              return -1;
+            } else {
+              return 0;
+            }
+          }
+        }
+
+        return rowAReversed < rowBReversed
+          ? 1
+          : rowAReversed > rowBReversed
+          ? -1
+          : 0;
+      },
+    },
     state: {
       sorting,
     },
@@ -69,8 +103,6 @@ export function DataTable<TData, TValue>({
               >
                 {row.getVisibleCells().map((cell) => (
                   <TableCell key={cell.id}>
-                    {console.log(cell)}
-
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
                 ))}
