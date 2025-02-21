@@ -41,7 +41,7 @@ const LoginForm = () => {
 
   if (!userContext.user) {
     return (
-      <div>
+      <div className="p-8">
         <form onSubmit={handleSubmit}>
           <div className="mt-4 flex">
             <h3 className="leading-10">Username: </h3>
@@ -71,7 +71,7 @@ const LoginForm = () => {
     );
   } else {
     return (
-      <div>
+      <div className="p-8">
         <em>{userContext.user.username} logged in</em>
         <Button className="ml-4 text-md" onClick={handleLogout}>
           Logout

@@ -13,7 +13,7 @@ const TillCounter = () => {
 
   return (
     <div>
-      <div className="grid md:grid-cols-2 ">
+      <div className="grid md:grid-cols-2 p-8">
         <TillTotal
           setFiveAndCoins={setFiveAndCoins}
           setTotalTakings={setTotalTakings}
