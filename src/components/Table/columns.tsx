@@ -6,7 +6,7 @@ import { Button } from "../ui/button";
 export const columns: ColumnDef<PopulatedTill>[] = [
   {
     accessorKey: "date",
-
+    invertSorting: true,
     header: ({ column }) => {
       return (
         <Button
@@ -19,7 +19,31 @@ export const columns: ColumnDef<PopulatedTill>[] = [
       );
     },
 
-    sortingFn: "dateSort",
+    sortingFn: (rowA, rowB) => {
+      const rowAReversed = rowA.original.date.split("-").reverse();
+
+      const rowBReversed = rowB.original.date.split("-").reverse();
+
+      if (rowAReversed[0] < rowBReversed[0]) {
+        return 1;
+      } else if (rowAReversed[0] > rowBReversed[0]) {
+        return -1;
+      } else {
+        if (rowAReversed[1] < rowBReversed[1]) {
+          return -1;
+        } else if (rowAReversed[1] > rowBReversed[1]) {
+          return 1;
+        } else {
+          if (rowAReversed[2] < rowBReversed[2]) {
+            return 1;
+          } else if (rowAReversed[2] > rowBReversed[2]) {
+            return -1;
+          } else {
+            return 0;
+          }
+        }
+      }
+    },
   },
   {
     accessorKey: "tillNumber",

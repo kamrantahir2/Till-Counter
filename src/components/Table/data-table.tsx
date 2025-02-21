@@ -34,37 +34,9 @@ export function DataTable<TData, TValue>({
     getCoreRowModel: getCoreRowModel(),
     onSortingChange: setSorting,
     getSortedRowModel: getSortedRowModel(),
-    sortingFns: {
-      dateSort: (rowA, rowB) => {
-        const rowAReversed = rowA.original.date.split("-").reverse();
-
-        const rowBReversed = rowB.original.date.split("-").reverse();
-
-        if (rowAReversed[0] < rowBReversed[0]) {
-          return 1;
-        } else if (rowAReversed[0] > rowBReversed[0]) {
-          return -1;
-        } else {
-          if (rowAReversed[1] < rowBReversed[1]) {
-            return -1;
-          } else if (rowAReversed[1] > rowBReversed[1]) {
-            return 1;
-          } else {
-            if (rowAReversed[2] < rowBReversed[2]) {
-              return 1;
-            } else if (rowAReversed[2] > rowBReversed[2]) {
-              return -1;
-            } else {
-              return 0;
-            }
-          }
-        }
-      },
-    },
     state: {
       sorting,
     },
-    sortDescFirst: true,
   });
 
   return (
