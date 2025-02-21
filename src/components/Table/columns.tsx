@@ -50,8 +50,8 @@ export const columns: ColumnDef<PopulatedTill>[] = [
     header: "Till Number",
   },
   {
-    accessorKey: "totalTakings",
-    header: "Total Takings",
+    accessorKey: "tillTotal",
+    header: "Till Total",
   },
   {
     accessorKey: "expectedTotal",

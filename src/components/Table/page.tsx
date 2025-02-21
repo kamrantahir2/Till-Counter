@@ -8,6 +8,8 @@ export default function Table() {
 
   const data = tillContext?.tills.reverse();
 
+  console.log(data);
+
   return (
     <div className="container mx-auto py-10">
       <DataTable columns={columns} data={data!} />
