@@ -43,3 +43,7 @@
 .currency {
   font-family: "Poppins", Courier, monospace;
 }
+
+.table-row:nth-of-type(2n) {
+  background-color: #ccc;
+}
