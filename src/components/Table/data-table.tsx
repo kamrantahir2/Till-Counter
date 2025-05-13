@@ -27,7 +27,7 @@ import {
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
-  originalData: PopulatedTill[];
+  originalData: PopulatedTill[] | undefined;
 }
 
 export function DataTable<TData, TValue>({
@@ -54,9 +54,15 @@ export function DataTable<TData, TValue>({
   const [till2Filter, setTill2Filter] = useState(false);
 
   const tillFilter = (tillNumber: number) => {
-    filteredContext?.setFiltered(
-      originalData.filter((till) => till.tillNumber === tillNumber)
-    );
+    if (tillNumber === 1) {
+      filteredContext?.setFiltered(
+        originalData!.filter((till) => till.tillNumber === tillNumber)
+      );
+    } else {
+      filteredContext?.setFiltered(
+        originalData!.filter((till) => till.tillNumber === tillNumber).reverse()
+      );
+    }
   };
 
   return (
@@ -104,7 +110,7 @@ export function DataTable<TData, TValue>({
               onClick={() => {
                 setTill1Filter(false);
                 setTill2Filter(false);
-                filteredContext?.setFiltered(originalData);
+                filteredContext?.setFiltered(originalData!);
               }}
             >
               Reset

@@ -13,9 +13,7 @@ export default function Table() {
 
   const data = tillContext?.tills.reverse();
 
-  const [filtered, setFiltered] = useState<PopulatedTill[]>(
-    tillContext!.tills!
-  );
+  const [filtered, setFiltered] = useState<PopulatedTill[]>(data!);
 
   useEffect(() => {
     setFiltered(data!);
@@ -24,7 +22,11 @@ export default function Table() {
   return (
     <FilteredContext.Provider value={{ filtered, setFiltered }}>
       <div className="container mx-auto py-10">
-        <DataTable columns={columns} data={filtered!} originalData={data} />
+        <DataTable
+          columns={columns}
+          data={filtered!.reverse()}
+          originalData={data}
+        />
       </div>
     </FilteredContext.Provider>
   );
