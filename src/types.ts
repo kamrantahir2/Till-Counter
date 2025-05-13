@@ -71,6 +71,11 @@ export interface TillContextType {
   setTills: React.Dispatch<React.SetStateAction<PopulatedTill[] | []>>;
 }
 
+export interface FilteredContextType {
+  filtered: PopulatedTill[] | [];
+  setFiltered: React.Dispatch<React.SetStateAction<PopulatedTill[] | []>>;
+}
+
 export interface PopulatedTill extends Till {
   user: {
     username: string;

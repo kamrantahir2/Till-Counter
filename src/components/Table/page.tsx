@@ -2,11 +2,11 @@ import { columns } from "./columns";
 import { DataTable } from "./data-table";
 import { useContext, createContext, useEffect } from "react";
 import { TillContext } from "@/App";
-import { TillContextType } from "@/types";
+import { FilteredContextType } from "@/types";
 import { useState } from "react";
 import { PopulatedTill } from "@/types";
 
-export const FilteredContext = createContext<TillContextType | null>(null);
+export const FilteredContext = createContext<FilteredContextType | null>(null);
 
 export default function Table() {
   const tillContext = useContext(TillContext);
@@ -22,8 +22,10 @@ export default function Table() {
   }, [tillContext?.tills]);
 
   return (
-    <div className="container mx-auto py-10">
-      <DataTable columns={columns} data={filtered!} />
-    </div>
+    <FilteredContext.Provider value={{ filtered, setFiltered }}>
+      <div className="container mx-auto py-10">
+        <DataTable columns={columns} data={filtered!} />
+      </div>
+    </FilteredContext.Provider>
   );
 }
