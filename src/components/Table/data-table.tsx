@@ -49,9 +49,9 @@ export function DataTable<TData, TValue>({
 
   const filteredContext = useContext(FilteredContext);
 
-  const resetFilter = () => {
-    filteredContext?.setFiltered(originalData);
-  };
+  const [till1Filter, setTill1Filter] = useState(false);
+
+  const [till2Filter, setTill2Filter] = useState(false);
 
   const tillFilter = (tillNumber: number) => {
     filteredContext?.setFiltered(
@@ -71,10 +71,12 @@ export function DataTable<TData, TValue>({
                   id="till1"
                   type="radio"
                   value="1"
-                  onClick={() => {
-                    resetFilter();
+                  onChange={() => {
+                    setTill1Filter(true);
+                    setTill2Filter(false);
                     tillFilter(1);
                   }}
+                  checked={till1Filter}
                 />
                 <h3 className="ml-2">Till 1</h3>
               </label>
@@ -87,14 +89,26 @@ export function DataTable<TData, TValue>({
                   id="till2"
                   type="radio"
                   value="2"
-                  onClick={() => {
-                    resetFilter();
+                  onChange={() => {
+                    setTill1Filter(false);
+                    setTill2Filter(true);
                     tillFilter(2);
                   }}
+                  checked={till2Filter}
                 />
                 <h3 className="ml-2">Till 2</h3>
               </label>
             </div>
+
+            <Button
+              onClick={() => {
+                setTill1Filter(false);
+                setTill2Filter(false);
+                filteredContext?.setFiltered(originalData);
+              }}
+            >
+              Reset
+            </Button>
           </div>
         </form>
       </div>
