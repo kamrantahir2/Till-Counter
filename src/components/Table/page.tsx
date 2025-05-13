@@ -24,7 +24,7 @@ export default function Table() {
   return (
     <FilteredContext.Provider value={{ filtered, setFiltered }}>
       <div className="container mx-auto py-10">
-        <DataTable columns={columns} data={filtered!} />
+        <DataTable columns={columns} data={filtered!} originalData={data} />
       </div>
     </FilteredContext.Provider>
   );
