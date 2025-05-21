@@ -70,7 +70,7 @@ export const columns: ColumnDef<PopulatedTill>[] = [
       return (
         <Button
           variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          onClick={() => column.toggleSorting(column.getIsSorted() === "desc")}
         >
           Expected Total
           <ArrowUpDown className="ml-2 h-4 w-4" />
@@ -80,7 +80,28 @@ export const columns: ColumnDef<PopulatedTill>[] = [
   },
   {
     accessorKey: "expectedVsTotal",
-    header: "+/-",
+
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          +/-
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+    sortingFn: (rowA, rowB) => {
+      const rowACleaned = Number(
+        rowA.original.expectedVsTotal.split(/[+£]/).join("")
+      );
+      const rowBCleaned = Number(
+        rowB.original.expectedVsTotal.split(/[+£]/).join("")
+      );
+
+      return rowACleaned < rowBCleaned ? 1 : rowACleaned > rowBCleaned ? -1 : 0;
+    },
   },
   {
     accessorKey: "additionalInfo",
