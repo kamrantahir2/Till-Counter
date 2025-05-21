@@ -48,10 +48,10 @@ export function DataTable<TData, TValue>({
   });
 
   const filteredContext = useContext(FilteredContext);
-
   const [till1Filter, setTill1Filter] = useState(false);
-
   const [till2Filter, setTill2Filter] = useState(false);
+  const [expectedFilterFrom, setExpectedFilterFrom] = useState(0);
+  const [expectedFilterTo, setExpectedFilterTo] = useState(0);
 
   const tillFilter = (tillNumber: number) => {
     if (tillNumber === 1) {
@@ -68,7 +68,8 @@ export function DataTable<TData, TValue>({
   return (
     <div>
       <div>
-        <form action="">
+        <form action="" className="mb-12">
+          {/* Till number filter starts */}
           <div>
             <div>
               <label htmlFor="till1" className="flex">
@@ -89,7 +90,7 @@ export function DataTable<TData, TValue>({
             </div>
 
             <div>
-              <label htmlFor="till2" className="flex">
+              <Label htmlFor="till2" className="flex">
                 <input
                   name="tillRadio"
                   id="till2"
@@ -103,7 +104,7 @@ export function DataTable<TData, TValue>({
                   checked={till2Filter}
                 />
                 <h3 className="ml-2">Till 2</h3>
-              </label>
+              </Label>
             </div>
 
             <Button
@@ -116,6 +117,39 @@ export function DataTable<TData, TValue>({
               Reset
             </Button>
           </div>
+          {/* Till number filter ends */}
+
+          {/* Expected total filter starts here */}
+          <div className="mt-4 ">
+            <h4 className="underline font-bold mb-2">Expected Total</h4>
+            <div className="flex">
+              <Label className="flex">
+                <h3>From: </h3>
+                <input
+                  type="number"
+                  name="ExpectedTotalFrom"
+                  id="ExpectedTotalFrom"
+                  className="border-2 border-black mx-2"
+                  onChange={(e) =>
+                    setExpectedFilterFrom(Number(e.target.value))
+                  }
+                />
+              </Label>
+
+              <Label className="flex">
+                <h3>To: </h3>
+                <input
+                  type="number"
+                  name="ExpectedTotalTo"
+                  id="ExpectedTotalTo"
+                  className="border-2 border-black mx-2"
+                  onChange={(e) => setExpectedFilterTo(Number(e.target.value))}
+                />
+              </Label>
+            </div>
+          </div>
+
+          {/* Expected total filter ends here */}
         </form>
       </div>
       <div className="rounded-md border ">
