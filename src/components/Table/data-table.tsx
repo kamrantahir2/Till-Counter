@@ -59,25 +59,16 @@ export function DataTable<TData, TValue>({
   const submitFilter = (e: React.SyntheticEvent) => {
     e.preventDefault();
     if (tillFilter !== null) {
-      tillFilter === 1
-        ? filteredContext?.setFiltered(
-            originalData!.filter(
-              (till) =>
-                till.tillNumber === tillFilter &&
-                till.expectedTotal! > expectedFilterFrom &&
-                till.expectedTotal < expectedFilterTo
-            )
+      filteredContext?.setFiltered(
+        originalData!
+          .filter(
+            (till) =>
+              till.tillNumber === tillFilter &&
+              till.expectedTotal! > expectedFilterFrom &&
+              till.expectedTotal < expectedFilterTo
           )
-        : filteredContext?.setFiltered(
-            originalData!
-              .filter(
-                (till) =>
-                  till.tillNumber === tillFilter &&
-                  till.expectedTotal! > expectedFilterFrom &&
-                  till.expectedTotal < expectedFilterTo
-              )
-              .reverse()
-          );
+          .reverse()
+      );
     } else {
       filteredContext?.setFiltered(
         originalData!.filter(
@@ -95,37 +86,17 @@ export function DataTable<TData, TValue>({
         <form action="" onSubmit={submitFilter} className="mb-12">
           {/* Till number filter starts */}
           <div>
-            <div>
-              <label htmlFor="till1" className="flex">
-                <input
-                  name="tillRadio"
-                  id="till1"
-                  type="radio"
-                  value="1"
-                  onChange={() => {
-                    setTillFilter(1);
-                  }}
-                  checked={tillFilter === 1}
-                />
-                <h3 className="ml-2">Till 1</h3>
-              </label>
-            </div>
-
-            <div>
-              <Label htmlFor="till2" className="flex">
-                <input
-                  name="tillRadio"
-                  id="till2"
-                  type="radio"
-                  value="2"
-                  onChange={() => {
-                    setTillFilter(2);
-                  }}
-                  checked={tillFilter === 2}
-                />
-                <h3 className="ml-2">Till 2</h3>
-              </Label>
-            </div>
+            <Label className="flex">
+              <h3 className="mr-2">Till Number:</h3>
+              <input
+                type="number"
+                name="tillNumber"
+                id="tillNumber"
+                onChange={(e) => setTillFilter(Number(e.target.value))}
+                className="border-2 border-black"
+                onWheel={(_e) => (document.activeElement as HTMLElement).blur()}
+              />
+            </Label>
           </div>
           {/* Till number filter ends */}
 
@@ -143,6 +114,9 @@ export function DataTable<TData, TValue>({
                   onChange={(e) =>
                     setExpectedFilterFrom(Number(e.target.value))
                   }
+                  onWheel={(_e) =>
+                    (document.activeElement as HTMLElement).blur()
+                  }
                 />
               </Label>
 
@@ -154,6 +128,9 @@ export function DataTable<TData, TValue>({
                   id="ExpectedTotalTo"
                   className="border-2 border-black mx-2"
                   onChange={(e) => setExpectedFilterTo(Number(e.target.value))}
+                  onWheel={(_e) =>
+                    (document.activeElement as HTMLElement).blur()
+                  }
                 />
               </Label>
             </div>

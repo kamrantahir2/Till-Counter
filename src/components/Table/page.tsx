@@ -11,7 +11,7 @@ export const FilteredContext = createContext<FilteredContextType | null>(null);
 export default function Table() {
   const tillContext = useContext(TillContext);
 
-  const data = tillContext?.tills.reverse();
+  const data = tillContext?.tills;
 
   const [filtered, setFiltered] = useState<PopulatedTill[]>(data!);
 
