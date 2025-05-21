@@ -55,14 +55,17 @@ export function DataTable<TData, TValue>({
   );
   const [expectedFilterTo, setExpectedFilterTo] = useState<Number | null>(null);
 
-  const tillFilter = (tillNumber: number) => {
-    if (tillNumber === 1) {
+  const tillFilter = (tillNumber: number) => {};
+
+  const submitFilter = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    if (till1Filter) {
       filteredContext?.setFiltered(
-        originalData!.filter((till) => till.tillNumber === tillNumber)
+        originalData!.filter((till) => till.tillNumber === 1)
       );
-    } else {
+    } else if (till2Filter) {
       filteredContext?.setFiltered(
-        originalData!.filter((till) => till.tillNumber === tillNumber).reverse()
+        originalData!.filter((till) => till.tillNumber === 2).reverse()
       );
     }
   };
@@ -70,7 +73,7 @@ export function DataTable<TData, TValue>({
   return (
     <div>
       <div>
-        <form action="" className="mb-12">
+        <form action="" onSubmit={submitFilter} className="mb-12">
           {/* Till number filter starts */}
           <div>
             <div>
@@ -108,18 +111,6 @@ export function DataTable<TData, TValue>({
                 <h3 className="ml-2">Till 2</h3>
               </Label>
             </div>
-
-            <Button
-              onClick={() => {
-                setTill1Filter(false);
-                setTill2Filter(false);
-                setExpectedFilterFrom(null);
-                setExpectedFilterTo(null);
-                filteredContext?.setFiltered(originalData!);
-              }}
-            >
-              Reset
-            </Button>
           </div>
           {/* Till number filter ends */}
 
@@ -154,6 +145,23 @@ export function DataTable<TData, TValue>({
           </div>
 
           {/* Expected total filter ends here */}
+
+          <div className="flex mt-4">
+            <Button type="submit">Submit</Button>
+
+            <Button
+              onClick={() => {
+                setTill1Filter(false);
+                setTill2Filter(false);
+                setExpectedFilterFrom(null);
+                setExpectedFilterTo(null);
+                filteredContext?.setFiltered(originalData!);
+              }}
+              className="mx-4"
+            >
+              Reset
+            </Button>
+          </div>
         </form>
       </div>
       <div className="rounded-md border ">
