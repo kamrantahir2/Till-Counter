@@ -6,7 +6,6 @@ import { Button } from "../ui/button";
 export const columns: ColumnDef<PopulatedTill>[] = [
   {
     accessorKey: "date",
-    invertSorting: false,
     header: ({ column }) => {
       return (
         <Button
@@ -70,7 +69,7 @@ export const columns: ColumnDef<PopulatedTill>[] = [
       return (
         <Button
           variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "desc")}
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Expected Total
           <ArrowUpDown className="ml-2 h-4 w-4" />

@@ -49,23 +49,43 @@ export function DataTable<TData, TValue>({
 
   const filteredContext = useContext(FilteredContext);
   const [tillFilter, setTillFilter] = useState<Number | null>(null);
-  const [expectedFilterFrom, setExpectedFilterFrom] = useState<Number | null>(
-    null
+  const [expectedFilterFrom, setExpectedFilterFrom] = useState(
+    Number.MIN_SAFE_INTEGER
   );
-  const [expectedFilterTo, setExpectedFilterTo] = useState<Number | null>(null);
+  const [expectedFilterTo, setExpectedFilterTo] = useState(
+    Number.MAX_SAFE_INTEGER
+  );
 
   const submitFilter = (e: React.SyntheticEvent) => {
     e.preventDefault();
     if (tillFilter !== null) {
       tillFilter === 1
         ? filteredContext?.setFiltered(
-            originalData!.filter((till) => till.tillNumber === tillFilter)
+            originalData!.filter(
+              (till) =>
+                till.tillNumber === tillFilter &&
+                till.expectedTotal! > expectedFilterFrom &&
+                till.expectedTotal < expectedFilterTo
+            )
           )
         : filteredContext?.setFiltered(
             originalData!
-              .filter((till) => till.tillNumber === tillFilter)
+              .filter(
+                (till) =>
+                  till.tillNumber === tillFilter &&
+                  till.expectedTotal! > expectedFilterFrom &&
+                  till.expectedTotal < expectedFilterTo
+              )
               .reverse()
           );
+    } else {
+      filteredContext?.setFiltered(
+        originalData!.filter(
+          (till) =>
+            till.expectedTotal! > expectedFilterFrom &&
+            till.expectedTotal < expectedFilterTo
+        )
+      );
     }
   };
 
@@ -147,8 +167,8 @@ export function DataTable<TData, TValue>({
             <Button
               onClick={() => {
                 setTillFilter(null);
-                setExpectedFilterFrom(null);
-                setExpectedFilterTo(null);
+                setExpectedFilterFrom(Number.MIN_SAFE_INTEGER);
+                setExpectedFilterTo(Number.MAX_SAFE_INTEGER);
                 filteredContext?.setFiltered(originalData!);
               }}
               className="mx-4"
