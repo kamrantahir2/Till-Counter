@@ -48,25 +48,24 @@ export function DataTable<TData, TValue>({
   });
 
   const filteredContext = useContext(FilteredContext);
-  const [till1Filter, setTill1Filter] = useState(false);
-  const [till2Filter, setTill2Filter] = useState(false);
+  const [tillFilter, setTillFilter] = useState<Number | null>(null);
   const [expectedFilterFrom, setExpectedFilterFrom] = useState<Number | null>(
     null
   );
   const [expectedFilterTo, setExpectedFilterTo] = useState<Number | null>(null);
 
-  const tillFilter = (tillNumber: number) => {};
-
   const submitFilter = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    if (till1Filter) {
-      filteredContext?.setFiltered(
-        originalData!.filter((till) => till.tillNumber === 1)
-      );
-    } else if (till2Filter) {
-      filteredContext?.setFiltered(
-        originalData!.filter((till) => till.tillNumber === 2).reverse()
-      );
+    if (tillFilter !== null) {
+      tillFilter === 1
+        ? filteredContext?.setFiltered(
+            originalData!.filter((till) => till.tillNumber === tillFilter)
+          )
+        : filteredContext?.setFiltered(
+            originalData!
+              .filter((till) => till.tillNumber === tillFilter)
+              .reverse()
+          );
     }
   };
 
@@ -84,11 +83,9 @@ export function DataTable<TData, TValue>({
                   type="radio"
                   value="1"
                   onChange={() => {
-                    setTill1Filter(true);
-                    setTill2Filter(false);
-                    tillFilter(1);
+                    setTillFilter(1);
                   }}
-                  checked={till1Filter}
+                  checked={tillFilter === 1}
                 />
                 <h3 className="ml-2">Till 1</h3>
               </label>
@@ -102,11 +99,9 @@ export function DataTable<TData, TValue>({
                   type="radio"
                   value="2"
                   onChange={() => {
-                    setTill1Filter(false);
-                    setTill2Filter(true);
-                    tillFilter(2);
+                    setTillFilter(2);
                   }}
-                  checked={till2Filter}
+                  checked={tillFilter === 2}
                 />
                 <h3 className="ml-2">Till 2</h3>
               </Label>
@@ -151,8 +146,7 @@ export function DataTable<TData, TValue>({
 
             <Button
               onClick={() => {
-                setTill1Filter(false);
-                setTill2Filter(false);
+                setTillFilter(null);
                 setExpectedFilterFrom(null);
                 setExpectedFilterTo(null);
                 filteredContext?.setFiltered(originalData!);
