@@ -50,8 +50,10 @@ export function DataTable<TData, TValue>({
   const filteredContext = useContext(FilteredContext);
   const [till1Filter, setTill1Filter] = useState(false);
   const [till2Filter, setTill2Filter] = useState(false);
-  const [expectedFilterFrom, setExpectedFilterFrom] = useState(0);
-  const [expectedFilterTo, setExpectedFilterTo] = useState(0);
+  const [expectedFilterFrom, setExpectedFilterFrom] = useState<Number | null>(
+    null
+  );
+  const [expectedFilterTo, setExpectedFilterTo] = useState<Number | null>(null);
 
   const tillFilter = (tillNumber: number) => {
     if (tillNumber === 1) {
@@ -111,6 +113,8 @@ export function DataTable<TData, TValue>({
               onClick={() => {
                 setTill1Filter(false);
                 setTill2Filter(false);
+                setExpectedFilterFrom(null);
+                setExpectedFilterTo(null);
                 filteredContext?.setFiltered(originalData!);
               }}
             >
