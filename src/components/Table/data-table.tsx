@@ -47,6 +47,7 @@ export function DataTable<TData, TValue>({
     },
   });
 
+  const tillContext = useContext(TillContext);
   const filteredContext = useContext(FilteredContext);
   const [tillFilter, setTillFilter] = useState<Number | null>(null);
   const [expectedFilterFrom, setExpectedFilterFrom] = useState(
@@ -55,6 +56,10 @@ export function DataTable<TData, TValue>({
   const [expectedFilterTo, setExpectedFilterTo] = useState(
     Number.MAX_SAFE_INTEGER
   );
+
+  const numberOfTills = originalData!.reduce((acc, value) => {
+    return (acc = acc > value.tillNumber ? acc : value.tillNumber);
+  }, 1);
 
   const submitFilter = (e: React.SyntheticEvent) => {
     e.preventDefault();
