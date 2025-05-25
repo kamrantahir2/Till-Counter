@@ -226,6 +226,7 @@ export function DataTable<TData, TValue>({
                   onWheel={(_e) =>
                     (document.activeElement as HTMLElement).blur()
                   }
+                  step={0.01}
                 />
               </Label>
 
@@ -240,6 +241,7 @@ export function DataTable<TData, TValue>({
                   onWheel={(_e) =>
                     (document.activeElement as HTMLElement).blur()
                   }
+                  step={0.01}
                 />
               </Label>
             </div>
