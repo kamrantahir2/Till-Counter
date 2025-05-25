@@ -58,10 +58,24 @@ export function DataTable<TData, TValue>({
   );
   const [tillTotalFrom, setTillTotalFrom] = useState(Number.MIN_SAFE_INTEGER);
   const [tillTotalTo, setTillTotalTo] = useState(Number.MAX_SAFE_INTEGER);
+  const [plusMinusFrom, setPlusMinusFrom] = useState<Number>(
+    Number.MIN_SAFE_INTEGER
+  );
+  const [plusMinusTo, setPlusMinusTo] = useState<Number>(
+    Number.MAX_SAFE_INTEGER
+  );
 
   const numberOfTills = originalData!.reduce((acc, value) => {
     return (acc = acc > value.tillNumber ? acc : value.tillNumber);
   }, 1);
+
+  const plusMinusRange = (tillOverUnder: Number) => {
+    if (tillOverUnder >= plusMinusFrom && tillOverUnder <= plusMinusTo) {
+      return true;
+    } else {
+      return false;
+    }
+  };
 
   const submitFilter = (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -77,8 +91,8 @@ export function DataTable<TData, TValue>({
               till.tillNumber === tillFilter &&
               till.expectedTotal! > expectedFilterFrom &&
               till.expectedTotal < expectedFilterTo &&
-              till.expectedTotal! > tillTotalFrom &&
-              till.expectedTotal < tillTotalTo
+              till.tillTotal! > tillTotalFrom &&
+              till.tillTotal < tillTotalTo
           )
           .reverse()
       );
@@ -88,8 +102,8 @@ export function DataTable<TData, TValue>({
           (till) =>
             till.expectedTotal! > expectedFilterFrom &&
             till.expectedTotal < expectedFilterTo &&
-            till.expectedTotal! > tillTotalFrom &&
-            till.expectedTotal < tillTotalTo
+            till.tillTotal! > tillTotalFrom &&
+            till.tillTotal < tillTotalTo
         )
       );
     }
@@ -198,6 +212,8 @@ export function DataTable<TData, TValue>({
                 setTillFilter(null);
                 setExpectedFilterFrom(Number.MIN_SAFE_INTEGER);
                 setExpectedFilterTo(Number.MAX_SAFE_INTEGER);
+                setTillTotalFrom(Number.MIN_SAFE_INTEGER);
+                setTillTotalTo(Number.MAX_SAFE_INTEGER);
                 filteredContext?.setFiltered(originalData!);
               }}
               className="mx-4"
