@@ -63,7 +63,11 @@ export function DataTable<TData, TValue>({
 
   const submitFilter = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    if (tillFilter !== null) {
+    if (
+      tillFilter !== null &&
+      Number(tillFilter) >= 1 &&
+      Number(tillFilter) <= numberOfTills
+    ) {
       filteredContext?.setFiltered(
         originalData!
           .filter(
