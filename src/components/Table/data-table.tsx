@@ -69,8 +69,12 @@ export function DataTable<TData, TValue>({
     return (acc = acc > value.tillNumber ? acc : value.tillNumber);
   }, 1);
 
-  const plusMinusRange = (tillOverUnder: Number) => {
-    if (tillOverUnder >= plusMinusFrom && tillOverUnder <= plusMinusTo) {
+  const plusMinusRange = (tillOverUnder: String) => {
+    const converted: Number = Number(tillOverUnder.split(/[+£]/).join(""));
+
+    console.log(converted);
+
+    if (converted >= plusMinusFrom && converted <= plusMinusTo) {
       return true;
     } else {
       return false;
@@ -92,7 +96,8 @@ export function DataTable<TData, TValue>({
               till.expectedTotal! > expectedFilterFrom &&
               till.expectedTotal < expectedFilterTo &&
               till.tillTotal! > tillTotalFrom &&
-              till.tillTotal < tillTotalTo
+              till.tillTotal < tillTotalTo &&
+              plusMinusRange(till.expectedVsTotal)
           )
           .reverse()
       );
@@ -103,7 +108,8 @@ export function DataTable<TData, TValue>({
             till.expectedTotal! > expectedFilterFrom &&
             till.expectedTotal < expectedFilterTo &&
             till.tillTotal! > tillTotalFrom &&
-            till.tillTotal < tillTotalTo
+            till.tillTotal < tillTotalTo &&
+            plusMinusRange(till.expectedVsTotal)
         )
       );
     }
@@ -204,6 +210,43 @@ export function DataTable<TData, TValue>({
 
           {/* Till total filter ends here */}
 
+          {/* Over Under filter starts here */}
+
+          <div className="mt-4 ">
+            <h4 className="underline font-bold mb-2">Over/Under</h4>
+            <div className="flex">
+              <Label className="flex">
+                <h3>From: </h3>
+                <input
+                  type="number"
+                  name="OverUnderFrom"
+                  id="OverUnderFrom"
+                  className="border-2 border-black mx-2"
+                  onChange={(e) => setPlusMinusFrom(Number(e.target.value))}
+                  onWheel={(_e) =>
+                    (document.activeElement as HTMLElement).blur()
+                  }
+                />
+              </Label>
+
+              <Label className="flex">
+                <h3>To: </h3>
+                <input
+                  type="number"
+                  name="OverUnderTo"
+                  id="OverUnderTo"
+                  className="border-2 border-black mx-2"
+                  onChange={(e) => setPlusMinusTo(Number(e.target.value))}
+                  onWheel={(_e) =>
+                    (document.activeElement as HTMLElement).blur()
+                  }
+                />
+              </Label>
+            </div>
+          </div>
+
+          {/* Over Under filter ends here */}
+
           <div className="flex mt-4">
             <Button type="submit">Submit</Button>
 
@@ -214,6 +257,8 @@ export function DataTable<TData, TValue>({
                 setExpectedFilterTo(Number.MAX_SAFE_INTEGER);
                 setTillTotalFrom(Number.MIN_SAFE_INTEGER);
                 setTillTotalTo(Number.MAX_SAFE_INTEGER);
+                setPlusMinusFrom(Number.MIN_SAFE_INTEGER);
+                setPlusMinusTo(Number.MAX_SAFE_INTEGER);
                 filteredContext?.setFiltered(originalData!);
               }}
               className="mx-4"
