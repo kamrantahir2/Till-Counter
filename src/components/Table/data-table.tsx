@@ -56,6 +56,8 @@ export function DataTable<TData, TValue>({
   const [expectedFilterTo, setExpectedFilterTo] = useState(
     Number.MAX_SAFE_INTEGER
   );
+  const [tillTotalFrom, setTillTotalFrom] = useState(Number.MIN_SAFE_INTEGER);
+  const [tillTotalTo, setTillTotalTo] = useState(Number.MAX_SAFE_INTEGER);
 
   const numberOfTills = originalData!.reduce((acc, value) => {
     return (acc = acc > value.tillNumber ? acc : value.tillNumber);
@@ -74,7 +76,9 @@ export function DataTable<TData, TValue>({
             (till) =>
               till.tillNumber === tillFilter &&
               till.expectedTotal! > expectedFilterFrom &&
-              till.expectedTotal < expectedFilterTo
+              till.expectedTotal < expectedFilterTo &&
+              till.expectedTotal! > tillTotalFrom &&
+              till.expectedTotal < tillTotalTo
           )
           .reverse()
       );
@@ -83,7 +87,9 @@ export function DataTable<TData, TValue>({
         originalData!.filter(
           (till) =>
             till.expectedTotal! > expectedFilterFrom &&
-            till.expectedTotal < expectedFilterTo
+            till.expectedTotal < expectedFilterTo &&
+            till.expectedTotal! > tillTotalFrom &&
+            till.expectedTotal < tillTotalTo
         )
       );
     }
@@ -147,6 +153,43 @@ export function DataTable<TData, TValue>({
 
           {/* Expected total filter ends here */}
 
+          {/* Till total filter starts here */}
+
+          <div className="mt-4 ">
+            <h4 className="underline font-bold mb-2">Till Total</h4>
+            <div className="flex">
+              <Label className="flex">
+                <h3>From: </h3>
+                <input
+                  type="number"
+                  name="TillTotalFrom"
+                  id="TillTotalFrom"
+                  className="border-2 border-black mx-2"
+                  onChange={(e) => setTillTotalFrom(Number(e.target.value))}
+                  onWheel={(_e) =>
+                    (document.activeElement as HTMLElement).blur()
+                  }
+                />
+              </Label>
+
+              <Label className="flex">
+                <h3>To: </h3>
+                <input
+                  type="number"
+                  name="TillTotalTo"
+                  id="TillTotalTo"
+                  className="border-2 border-black mx-2"
+                  onChange={(e) => setTillTotalTo(Number(e.target.value))}
+                  onWheel={(_e) =>
+                    (document.activeElement as HTMLElement).blur()
+                  }
+                />
+              </Label>
+            </div>
+          </div>
+
+          {/* Till total filter ends here */}
+
           <div className="flex mt-4">
             <Button type="submit">Submit</Button>
 
@@ -171,7 +214,10 @@ export function DataTable<TData, TValue>({
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   return (
-                    <th key={header.id} className="text-black font-semibold">
+                    <th
+                      key={header.id}
+                      className="text-black font-semibold text-left"
+                    >
                       {header.isPlaceholder
                         ? null
                         : flexRender(
