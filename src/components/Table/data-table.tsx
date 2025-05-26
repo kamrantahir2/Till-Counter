@@ -49,6 +49,9 @@ export function DataTable<TData, TValue>({
 
   const filteredContext = useContext(FilteredContext);
   const [tillFilter, setTillFilter] = useState<Number | null>(null);
+
+  const [tillFilterText, setTillFilterText] = useState("");
+
   const [expectedFilterFrom, setExpectedFilterFrom] = useState(
     Number.MIN_SAFE_INTEGER
   );
@@ -160,18 +163,30 @@ export function DataTable<TData, TValue>({
       <div>
         <form action="" onSubmit={submitFilter} className="mb-12">
           {/* Till number filter starts */}
-          <div>
+          <div className="flex">
             <Label className="flex">
-              <h3 className="mr-2">Till Number:</h3>
+              <h3 className="">Till Number:</h3>
               <input
                 type="number"
                 name="tillNumber"
                 id="tillNumber"
-                onChange={(e) => setTillFilter(Number(e.target.value))}
-                className="border-2 border-black"
+                value={tillFilterText}
+                onChange={(e) => {
+                  setTillFilter(Number(e.target.value));
+                  setTillFilterText(e.target.value);
+                }}
+                className="border-2 border-black mx-2"
                 onWheel={(_e) => (document.activeElement as HTMLElement).blur()}
               />
             </Label>
+            <Button
+              onClick={() => {
+                setTillFilter(null);
+                setTillFilterText("");
+              }}
+            >
+              Reset
+            </Button>
           </div>
           {/* Till number filter ends */}
 
