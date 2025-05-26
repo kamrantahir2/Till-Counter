@@ -65,6 +65,9 @@ export function DataTable<TData, TValue>({
     Number.MAX_SAFE_INTEGER
   );
 
+  const [dateFrom, setDateFrom] = useState<String>("-273721-3-19");
+  const [dateTo, setDateTo] = useState<String>("273860-8-13");
+
   const numberOfTills = originalData!.reduce((acc, value) => {
     return (acc = acc > value.tillNumber ? acc : value.tillNumber);
   }, 1);
@@ -72,9 +75,26 @@ export function DataTable<TData, TValue>({
   const plusMinusRange = (tillOverUnder: String) => {
     const converted: Number = Number(tillOverUnder.split(/[+£]/).join(""));
 
-    console.log(converted);
-
     if (converted >= plusMinusFrom && converted <= plusMinusTo) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  const dateFilter = (date: String) => {
+    let dateArr = date.split("-");
+    for (let i = 0; i < dateArr.length; i++) {
+      if (dateArr[i].length === 1) {
+        dateArr[i] = "0" + dateArr[i];
+      }
+    }
+    const joined = dateArr.reverse().join("-");
+
+    if (
+      joined.valueOf() >= dateFrom.valueOf() &&
+      joined.valueOf() <= dateTo.valueOf()
+    ) {
       return true;
     } else {
       return false;
@@ -97,20 +117,24 @@ export function DataTable<TData, TValue>({
               till.expectedTotal < expectedFilterTo &&
               till.tillTotal! > tillTotalFrom &&
               till.tillTotal < tillTotalTo &&
-              plusMinusRange(till.expectedVsTotal)
+              plusMinusRange(till.expectedVsTotal) &&
+              dateFilter(till.date)
           )
           .reverse()
       );
     } else {
       filteredContext?.setFiltered(
-        originalData!.filter(
-          (till) =>
-            till.expectedTotal! > expectedFilterFrom &&
-            till.expectedTotal < expectedFilterTo &&
-            till.tillTotal! > tillTotalFrom &&
-            till.tillTotal < tillTotalTo &&
-            plusMinusRange(till.expectedVsTotal)
-        )
+        originalData!
+          .filter(
+            (till) =>
+              till.expectedTotal! > expectedFilterFrom &&
+              till.expectedTotal < expectedFilterTo &&
+              till.tillTotal! > tillTotalFrom &&
+              till.tillTotal < tillTotalTo &&
+              plusMinusRange(till.expectedVsTotal) &&
+              dateFilter(till.date)
+          )
+          .reverse()
       );
     }
   };
@@ -248,6 +272,43 @@ export function DataTable<TData, TValue>({
           </div>
 
           {/* Over Under filter ends here */}
+
+          {/* Date filter starts here */}
+
+          <div className="mt-4 ">
+            <h4 className="underline font-bold mb-2">Date</h4>
+            <div className="flex">
+              <Label className="flex">
+                <h3>From: </h3>
+                <input
+                  type="date"
+                  name="dateFrom"
+                  id="dateFrom"
+                  className="border-2 border-black mx-2"
+                  onChange={(e) => setDateFrom(e.target.value)}
+                  onWheel={(_e) =>
+                    (document.activeElement as HTMLElement).blur()
+                  }
+                />
+              </Label>
+
+              <Label className="flex">
+                <h3>To: </h3>
+                <input
+                  type="date"
+                  name="dateTo"
+                  id="dateTo"
+                  className="border-2 border-black mx-2"
+                  onChange={(e) => setDateTo(e.target.value)}
+                  onWheel={(_e) =>
+                    (document.activeElement as HTMLElement).blur()
+                  }
+                />
+              </Label>
+            </div>
+          </div>
+
+          {/* Date filter ends here */}
 
           <div className="flex mt-4">
             <Button type="submit">Submit</Button>
