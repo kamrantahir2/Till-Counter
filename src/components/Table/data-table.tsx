@@ -55,8 +55,13 @@ export function DataTable<TData, TValue>({
   const [expectedFilterTo, setExpectedFilterTo] = useState(
     Number.MAX_SAFE_INTEGER
   );
+
   const [tillTotalFrom, setTillTotalFrom] = useState(Number.MIN_SAFE_INTEGER);
   const [tillTotalTo, setTillTotalTo] = useState(Number.MAX_SAFE_INTEGER);
+
+  const [tillTotalFromText, setTillTotalFromText] = useState("");
+  const [tillTotalToText, setTillTotalToText] = useState("");
+
   const [plusMinusFrom, setPlusMinusFrom] = useState<Number>(
     Number.MIN_SAFE_INTEGER
   );
@@ -217,10 +222,15 @@ export function DataTable<TData, TValue>({
                   name="TillTotalFrom"
                   id="TillTotalFrom"
                   className="border-2 border-black mx-2"
-                  onChange={(e) => setTillTotalFrom(Number(e.target.value))}
+                  value={tillTotalFromText}
+                  onChange={(e) => {
+                    setTillTotalFrom(Number(e.target.value));
+                    setTillTotalFromText(e.target.value);
+                  }}
                   onWheel={(_e) =>
                     (document.activeElement as HTMLElement).blur()
                   }
+                  step={0.01}
                 />
               </Label>
 
@@ -231,12 +241,28 @@ export function DataTable<TData, TValue>({
                   name="TillTotalTo"
                   id="TillTotalTo"
                   className="border-2 border-black mx-2"
-                  onChange={(e) => setTillTotalTo(Number(e.target.value))}
+                  step={0.01}
+                  value={tillTotalToText}
+                  onChange={(e) => {
+                    setTillTotalTo(Number(e.target.value));
+                    setTillTotalToText(e.target.value);
+                  }}
                   onWheel={(_e) =>
                     (document.activeElement as HTMLElement).blur()
                   }
                 />
               </Label>
+
+              <Button
+                onClick={() => {
+                  setTillTotalFrom(Number.MIN_SAFE_INTEGER);
+                  setTillTotalTo(Number.MAX_SAFE_INTEGER);
+                  setTillTotalFromText("");
+                  setTillTotalToText("");
+                }}
+              >
+                Reset
+              </Button>
             </div>
           </div>
 
