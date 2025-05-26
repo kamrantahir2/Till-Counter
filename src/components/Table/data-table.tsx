@@ -19,7 +19,6 @@ import {
   Table,
   TableBody,
   TableCell,
-  TableHead,
   TableHeader,
   TableRow,
 } from "../ui/table";
@@ -47,7 +46,6 @@ export function DataTable<TData, TValue>({
     },
   });
 
-  const tillContext = useContext(TillContext);
   const filteredContext = useContext(FilteredContext);
   const [tillFilter, setTillFilter] = useState<Number | null>(null);
   const [expectedFilterFrom, setExpectedFilterFrom] = useState(
@@ -313,6 +311,7 @@ export function DataTable<TData, TValue>({
           <div className="flex mt-4">
             <Button type="submit">Submit</Button>
 
+            {/* RESET BUTTON START */}
             <Button
               onClick={() => {
                 setTillFilter(null);
@@ -330,6 +329,7 @@ export function DataTable<TData, TValue>({
             >
               Reset
             </Button>
+            {/* RESET BUTTON START */}
           </div>
         </form>
       </div>
