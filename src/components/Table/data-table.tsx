@@ -323,6 +323,8 @@ export function DataTable<TData, TValue>({
                 setPlusMinusFrom(Number.MIN_SAFE_INTEGER);
                 setPlusMinusTo(Number.MAX_SAFE_INTEGER);
                 filteredContext?.setFiltered(originalData!);
+                setDateFrom("-273721-3-19");
+                setDateTo("273860-8-13");
               }}
               className="mx-4"
             >
