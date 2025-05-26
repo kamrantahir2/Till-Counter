@@ -56,6 +56,9 @@ export function DataTable<TData, TValue>({
     Number.MAX_SAFE_INTEGER
   );
 
+  const [expectedFilterFromText, setExpectedFilterFromText] = useState("");
+  const [expectedFilterToText, setExpectedFilterToText] = useState("");
+
   const [tillTotalFrom, setTillTotalFrom] = useState(Number.MIN_SAFE_INTEGER);
   const [tillTotalTo, setTillTotalTo] = useState(Number.MAX_SAFE_INTEGER);
 
@@ -126,10 +129,10 @@ export function DataTable<TData, TValue>({
           .filter(
             (till) =>
               till.tillNumber === tillFilter &&
-              till.expectedTotal! > expectedFilterFrom &&
-              till.expectedTotal < expectedFilterTo &&
-              till.tillTotal! > tillTotalFrom &&
-              till.tillTotal < tillTotalTo &&
+              till.expectedTotal! >= expectedFilterFrom &&
+              till.expectedTotal <= expectedFilterTo &&
+              till.tillTotal! >= tillTotalFrom &&
+              till.tillTotal <= tillTotalTo &&
               plusMinusRange(till.expectedVsTotal) &&
               dateFilter(till.date)
           )
@@ -140,10 +143,10 @@ export function DataTable<TData, TValue>({
         originalData!
           .filter(
             (till) =>
-              till.expectedTotal! > expectedFilterFrom &&
-              till.expectedTotal < expectedFilterTo &&
-              till.tillTotal! > tillTotalFrom &&
-              till.tillTotal < tillTotalTo &&
+              till.expectedTotal! >= expectedFilterFrom &&
+              till.expectedTotal <= expectedFilterTo &&
+              till.tillTotal! >= tillTotalFrom &&
+              till.tillTotal <= tillTotalTo &&
               plusMinusRange(till.expectedVsTotal) &&
               dateFilter(till.date)
           )
@@ -183,9 +186,11 @@ export function DataTable<TData, TValue>({
                   name="ExpectedTotalFrom"
                   id="ExpectedTotalFrom"
                   className="border-2 border-black mx-2"
-                  onChange={(e) =>
-                    setExpectedFilterFrom(Number(e.target.value))
-                  }
+                  value={expectedFilterFromText}
+                  onChange={(e) => {
+                    setExpectedFilterFrom(Number(e.target.value));
+                    setExpectedFilterFromText(e.target.value);
+                  }}
                   onWheel={(_e) =>
                     (document.activeElement as HTMLElement).blur()
                   }
@@ -199,12 +204,26 @@ export function DataTable<TData, TValue>({
                   name="ExpectedTotalTo"
                   id="ExpectedTotalTo"
                   className="border-2 border-black mx-2"
-                  onChange={(e) => setExpectedFilterTo(Number(e.target.value))}
+                  value={expectedFilterToText}
+                  onChange={(e) => {
+                    setExpectedFilterTo(Number(e.target.value));
+                    setExpectedFilterToText(e.target.value);
+                  }}
                   onWheel={(_e) =>
                     (document.activeElement as HTMLElement).blur()
                   }
                 />
               </Label>
+              <Button
+                onClick={() => {
+                  setExpectedFilterFrom(Number.MIN_SAFE_INTEGER);
+                  setExpectedFilterTo(Number.MAX_SAFE_INTEGER);
+                  setExpectedFilterFromText("");
+                  setExpectedFilterToText("");
+                }}
+              >
+                Reset
+              </Button>
             </div>
           </div>
 
