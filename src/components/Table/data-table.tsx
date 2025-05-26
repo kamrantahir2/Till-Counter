@@ -3,7 +3,6 @@ import { useContext } from "react";
 import { FilteredContext } from "./page";
 import { Button } from "../ui/button";
 import { Label } from "@radix-ui/react-label";
-import { TillContext } from "@/App";
 import { PopulatedTill } from "@/types";
 
 import {
@@ -46,6 +45,8 @@ export function DataTable<TData, TValue>({
     },
   });
 
+  // STATES START
+
   const filteredContext = useContext(FilteredContext);
   const [tillFilter, setTillFilter] = useState<Number | null>(null);
   const [expectedFilterFrom, setExpectedFilterFrom] = useState(
@@ -63,8 +64,17 @@ export function DataTable<TData, TValue>({
     Number.MAX_SAFE_INTEGER
   );
 
+  const [plusMinusFromText, setPlusMinusFromText] = useState("");
+  const [plusMinusToText, setPlusMinusToText] = useState("");
+
   const [dateFrom, setDateFrom] = useState<String>("-273721-3-19");
   const [dateTo, setDateTo] = useState<String>("273860-8-13");
+
+  const [dateFromText, setDateFromText] = useState("");
+
+  const [dateToText, setDateToText] = useState("");
+
+  // STATES END
 
   const numberOfTills = originalData!.reduce((acc, value) => {
     return (acc = acc > value.tillNumber ? acc : value.tillNumber);
@@ -244,7 +254,11 @@ export function DataTable<TData, TValue>({
                   name="OverUnderFrom"
                   id="OverUnderFrom"
                   className="border-2 border-black mx-2"
-                  onChange={(e) => setPlusMinusFrom(Number(e.target.value))}
+                  value={plusMinusFromText}
+                  onChange={(e) => {
+                    setPlusMinusFrom(Number(e.target.value));
+                    setPlusMinusFromText(e.target.value);
+                  }}
                   onWheel={(_e) =>
                     (document.activeElement as HTMLElement).blur()
                   }
@@ -259,13 +273,26 @@ export function DataTable<TData, TValue>({
                   name="OverUnderTo"
                   id="OverUnderTo"
                   className="border-2 border-black mx-2"
-                  onChange={(e) => setPlusMinusTo(Number(e.target.value))}
+                  value={plusMinusToText}
+                  onChange={(e) => {
+                    setPlusMinusTo(Number(e.target.value));
+                    setPlusMinusToText(e.target.value);
+                  }}
                   onWheel={(_e) =>
                     (document.activeElement as HTMLElement).blur()
                   }
                   step={0.01}
                 />
               </Label>
+              <Button
+                onClick={() => {
+                  setPlusMinusFrom(Number.MIN_SAFE_INTEGER);
+                  setPlusMinusTo(Number.MAX_SAFE_INTEGER);
+                  setPlusMinusFromText("");
+                }}
+              >
+                Reset
+              </Button>
             </div>
           </div>
 
@@ -277,13 +304,17 @@ export function DataTable<TData, TValue>({
             <h4 className="underline font-bold mb-2">Date</h4>
             <div className="flex">
               <Label className="flex">
-                <h3>From: </h3>
+                <h3 className="leading-10">From: </h3>
                 <input
                   type="date"
                   name="dateFrom"
                   id="dateFrom"
                   className="border-2 border-black mx-2"
-                  onChange={(e) => setDateFrom(e.target.value)}
+                  value={dateFromText}
+                  onChange={(e) => {
+                    setDateFrom(e.target.value);
+                    setDateFromText(e.target.value);
+                  }}
                   onWheel={(_e) =>
                     (document.activeElement as HTMLElement).blur()
                   }
@@ -291,18 +322,33 @@ export function DataTable<TData, TValue>({
               </Label>
 
               <Label className="flex">
-                <h3>To: </h3>
+                <h3 className="leading-10">To: </h3>
                 <input
                   type="date"
                   name="dateTo"
                   id="dateTo"
                   className="border-2 border-black mx-2"
-                  onChange={(e) => setDateTo(e.target.value)}
+                  value={dateToText}
+                  onChange={(e) => {
+                    setDateTo(e.target.value);
+                    setDateToText(e.target.value);
+                  }}
                   onWheel={(_e) =>
                     (document.activeElement as HTMLElement).blur()
                   }
                 />
               </Label>
+
+              <Button
+                onClick={() => {
+                  setDateFrom("-273721-3-19");
+                  setDateTo("273860-8-13");
+                  setDateFromText("");
+                  setDateToText("");
+                }}
+              >
+                Reset
+              </Button>
             </div>
           </div>
 
@@ -311,7 +357,7 @@ export function DataTable<TData, TValue>({
           <div className="flex mt-4">
             <Button type="submit">Submit</Button>
 
-            {/* RESET BUTTON START */}
+            {/* CLEAR BUTTON START */}
             <Button
               onClick={() => {
                 setTillFilter(null);
@@ -321,15 +367,15 @@ export function DataTable<TData, TValue>({
                 setTillTotalTo(Number.MAX_SAFE_INTEGER);
                 setPlusMinusFrom(Number.MIN_SAFE_INTEGER);
                 setPlusMinusTo(Number.MAX_SAFE_INTEGER);
-                filteredContext?.setFiltered(originalData!);
                 setDateFrom("-273721-3-19");
                 setDateTo("273860-8-13");
+                filteredContext?.setFiltered(originalData!);
               }}
               className="mx-4"
             >
-              Reset
+              Clear
             </Button>
-            {/* RESET BUTTON START */}
+            {/* CLEAR BUTTON START */}
           </div>
         </form>
       </div>
