@@ -165,7 +165,7 @@ export function DataTable<TData, TValue>({
           {/* Till number filter starts */}
           <div className="flex">
             <Label className="flex">
-              <h3 className="">Till Number:</h3>
+              <h3 className="leading-10">Till Number:</h3>
               <input
                 type="number"
                 name="tillNumber"
@@ -195,7 +195,7 @@ export function DataTable<TData, TValue>({
             <h4 className="underline font-bold mb-2">Expected Total</h4>
             <div className="flex">
               <Label className="flex">
-                <h3>From: </h3>
+                <h3 className="leading-10">From: </h3>
                 <input
                   type="number"
                   name="ExpectedTotalFrom"
@@ -213,7 +213,7 @@ export function DataTable<TData, TValue>({
               </Label>
 
               <Label className="flex">
-                <h3>To: </h3>
+                <h3 className="leading-10">To: </h3>
                 <input
                   type="number"
                   name="ExpectedTotalTo"
@@ -250,7 +250,7 @@ export function DataTable<TData, TValue>({
             <h4 className="underline font-bold mb-2">Till Total</h4>
             <div className="flex">
               <Label className="flex">
-                <h3>From: </h3>
+                <h3 className="leading-10">From: </h3>
                 <input
                   type="number"
                   name="TillTotalFrom"
@@ -269,7 +269,7 @@ export function DataTable<TData, TValue>({
               </Label>
 
               <Label className="flex">
-                <h3>To: </h3>
+                <h3 className="leading-10">To: </h3>
                 <input
                   type="number"
                   name="TillTotalTo"
@@ -308,7 +308,7 @@ export function DataTable<TData, TValue>({
             <h4 className="underline font-bold mb-2">Over/Under</h4>
             <div className="flex">
               <Label className="flex">
-                <h3>From: </h3>
+                <h3 className="leading-10">From: </h3>
                 <input
                   type="number"
                   name="OverUnderFrom"
@@ -327,7 +327,7 @@ export function DataTable<TData, TValue>({
               </Label>
 
               <Label className="flex">
-                <h3>To: </h3>
+                <h3 className="leading-10">To: </h3>
                 <input
                   type="number"
                   name="OverUnderTo"
