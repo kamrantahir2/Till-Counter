@@ -175,7 +175,7 @@ export function DataTable<TData, TValue>({
                   setTillFilter(Number(e.target.value));
                   setTillFilterText(e.target.value);
                 }}
-                className="border-2 border-black mx-2"
+                className="border-2 border-black mx-2 rounded-lg"
                 onWheel={(_e) => (document.activeElement as HTMLElement).blur()}
               />
             </Label>
@@ -200,7 +200,7 @@ export function DataTable<TData, TValue>({
                   type="number"
                   name="ExpectedTotalFrom"
                   id="ExpectedTotalFrom"
-                  className="border-2 border-black mx-2"
+                  className="border-2 border-black mx-2 rounded-lg"
                   value={expectedFilterFromText}
                   onChange={(e) => {
                     setExpectedFilterFrom(Number(e.target.value));
@@ -218,7 +218,7 @@ export function DataTable<TData, TValue>({
                   type="number"
                   name="ExpectedTotalTo"
                   id="ExpectedTotalTo"
-                  className="border-2 border-black mx-2"
+                  className="border-2 border-black mx-2 rounded-lg"
                   value={expectedFilterToText}
                   onChange={(e) => {
                     setExpectedFilterTo(Number(e.target.value));
@@ -255,7 +255,7 @@ export function DataTable<TData, TValue>({
                   type="number"
                   name="TillTotalFrom"
                   id="TillTotalFrom"
-                  className="border-2 border-black mx-2"
+                  className="border-2 border-black mx-2 rounded-lg"
                   value={tillTotalFromText}
                   onChange={(e) => {
                     setTillTotalFrom(Number(e.target.value));
@@ -274,7 +274,7 @@ export function DataTable<TData, TValue>({
                   type="number"
                   name="TillTotalTo"
                   id="TillTotalTo"
-                  className="border-2 border-black mx-2"
+                  className="border-2 border-black mx-2 rounded-lg"
                   step={0.01}
                   value={tillTotalToText}
                   onChange={(e) => {
@@ -313,7 +313,7 @@ export function DataTable<TData, TValue>({
                   type="number"
                   name="OverUnderFrom"
                   id="OverUnderFrom"
-                  className="border-2 border-black mx-2"
+                  className="border-2 border-black mx-2 rounded-lg"
                   value={plusMinusFromText}
                   onChange={(e) => {
                     setPlusMinusFrom(Number(e.target.value));
@@ -332,7 +332,7 @@ export function DataTable<TData, TValue>({
                   type="number"
                   name="OverUnderTo"
                   id="OverUnderTo"
-                  className="border-2 border-black mx-2"
+                  className="border-2 border-black mx-2 rounded-lg"
                   value={plusMinusToText}
                   onChange={(e) => {
                     setPlusMinusTo(Number(e.target.value));
@@ -369,7 +369,7 @@ export function DataTable<TData, TValue>({
                   type="date"
                   name="dateFrom"
                   id="dateFrom"
-                  className="border-2 border-black mx-2"
+                  className="border-2 border-black mx-2 rounded-lg px-2"
                   value={dateFromText}
                   onChange={(e) => {
                     setDateFrom(e.target.value);
@@ -387,7 +387,7 @@ export function DataTable<TData, TValue>({
                   type="date"
                   name="dateTo"
                   id="dateTo"
-                  className="border-2 border-black mx-2"
+                  className="border-2 border-black mx-2 rounded-lg px-2"
                   value={dateToText}
                   onChange={(e) => {
                     setDateTo(e.target.value);
