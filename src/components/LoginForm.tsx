@@ -39,9 +39,19 @@ const LoginForm = () => {
 
       await login({ username, password });
 
-      toast("Log In Successful");
+      toast.success("Log In Successful", {
+        classNames: {
+          toast: " border-2 border-green-500",
+          title: "text-base",
+        },
+      });
     } catch (error) {
-      toast("Log In Failed");
+      toast.error("Username or Password Incorrect", {
+        classNames: {
+          toast: "border-2 border-red-500",
+          title: "text-base",
+        },
+      });
     }
   };
 
@@ -51,9 +61,19 @@ const LoginForm = () => {
       await usersService.createUser({ username, password });
 
       await login({ username, password });
-      toast("Successfully Registered");
+      toast.success("User Created Successfully", {
+        classNames: {
+          toast: " border-2 border-green-500",
+          title: "text-base",
+        },
+      });
     } catch (error) {
-      toast("Username already in use");
+      toast.error("Username Already In Use", {
+        classNames: {
+          toast: "border-2 border-red-500",
+          title: "text-base",
+        },
+      });
     }
   };
 

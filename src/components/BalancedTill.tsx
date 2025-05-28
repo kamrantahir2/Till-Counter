@@ -87,9 +87,12 @@ const BalancedTill = ({
 
       tillContext?.setTills(tillContext.tills.concat(savedTill));
 
-      toast("Till has been saved");
-
-      console.log(savedTill);
+      toast.success("Till Saved Successfully", {
+        classNames: {
+          toast: " border-2 border-green-500",
+          title: "text-base",
+        },
+      });
     } catch (error) {
       console.log(error);
     }
