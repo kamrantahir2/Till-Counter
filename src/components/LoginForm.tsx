@@ -5,6 +5,7 @@ import loginService from "../service/login";
 import tillService from "../service/tills";
 import { UserContext } from "@/App";
 import { useContext } from "react";
+import { toast } from "sonner";
 
 const LoginForm = () => {
   const [username, setUsername] = useState("");
@@ -17,14 +18,20 @@ const LoginForm = () => {
   }
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
-    e.preventDefault();
-    const user = await loginService.login({ username, password });
+    try {
+      e.preventDefault();
+      const user = await loginService.login({ username, password });
 
-    tillService.setToken(user.token);
+      tillService.setToken(user.token);
 
-    window.localStorage.setItem("loggedInUser", JSON.stringify(user));
+      window.localStorage.setItem("loggedInUser", JSON.stringify(user));
 
-    userContext.setUser(user);
+      userContext.setUser(user);
+
+      toast("Log In Successful");
+    } catch (error) {
+      toast("Log In Failed");
+    }
   };
 
   const handleLogout = () => {
