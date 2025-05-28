@@ -164,7 +164,7 @@ export function DataTable<TData, TValue>({
   };
 
   return (
-    <div>
+    <div className="">
       <div className="">
         <div className="w-full text-center mb-12">
           <Button
@@ -189,7 +189,7 @@ export function DataTable<TData, TValue>({
               : "opacity-0 absolute")
           }
         >
-          <div className="grid md:grid-cols-2 gap-2 md:h-80 justify-items-center text-center">
+          <div className="grid md:grid-cols-2 gap-2 md:h-80 md:justify-items-center text-center">
             {/* Till number filter starts */}
 
             <div>
