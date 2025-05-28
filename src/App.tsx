@@ -41,7 +41,7 @@ function App() {
     <UserContext.Provider value={{ user, setUser }}>
       <TillContext.Provider value={{ tills, setTills }}>
         <div className="">
-          <div className="mb-4 flex justify-around bg-black w-screen">
+          <div className="mb-4 flex justify-around bg-black">
             <Link
               className="text-xl font-medium underline text-blue-500"
               to="/"
