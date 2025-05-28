@@ -6,13 +6,6 @@ import tillService from "../service/tills";
 import { UserContext } from "@/App";
 import { useContext } from "react";
 
-// const LoginForm = ({
-//   user,
-//   setUser,
-// }: {
-//   user: User | null;
-//   setUser: React.Dispatch<React.SetStateAction<User | null>>;
-// }) => {
 const LoginForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");

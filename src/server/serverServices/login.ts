@@ -6,7 +6,8 @@ dotenv.config();
 import { LoggedInUser, Credentials } from "../../types";
 
 const login = async (credentials: Credentials): Promise<LoggedInUser> => {
-  const { username, password } = credentials;
+  const username = credentials.username.toLowerCase();
+  const password = credentials.password;
 
   const user = await User.findOne({ username }).populate("tills", {
     id: 1,

@@ -28,7 +28,6 @@ usersRouter.post("/", async (request, response, next) => {
     const { username, password } = request.body;
 
     const createdUser = await usersService.createUser({ username, password });
-
     response.status(201).send(createdUser);
   } catch (error) {
     next(error);

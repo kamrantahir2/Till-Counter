@@ -25,7 +25,8 @@ const getUserById = async (id: string): Promise<CreatedUser> => {
 };
 
 const createUser = async (newUser: Credentials): Promise<CreatedUser> => {
-  const { username, password } = newUser;
+  const password = newUser.password;
+  const username = newUser.username.toLowerCase();
   const saltRounds = 10;
   const passwordHash = await bcrypt.hash(password, saltRounds);
   const user = new User({
