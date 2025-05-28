@@ -25,18 +25,22 @@ const getUserById = async (id: string): Promise<CreatedUser> => {
 };
 
 const createUser = async (newUser: Credentials): Promise<CreatedUser> => {
-  const password = newUser.password;
-  const username = newUser.username.toLowerCase();
-  const saltRounds = 10;
-  const passwordHash = await bcrypt.hash(password, saltRounds);
-  const user = new User({
-    username,
-    passwordHash,
-  });
+  try {
+    const password = newUser.password;
+    const username = newUser.username.toLowerCase();
+    const saltRounds = 10;
+    const passwordHash = await bcrypt.hash(password, saltRounds);
+    const user = new User({
+      username,
+      passwordHash,
+    });
 
-  const savedUser = await user.save();
+    const savedUser = await user.save();
 
-  return savedUser;
+    return savedUser;
+  } catch (error) {
+    throw new Error("Username already in use");
+  }
 };
 
 export default { getAllUsers, createUser, getUserById };

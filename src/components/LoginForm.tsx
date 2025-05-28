@@ -6,6 +6,8 @@ import tillService from "../service/tills";
 import { UserContext } from "@/App";
 import { useContext } from "react";
 import { toast } from "sonner";
+import usersService from "../service/users";
+import { Credentials } from "@/types";
 
 const LoginForm = () => {
   const [username, setUsername] = useState("");
@@ -17,20 +19,41 @@ const LoginForm = () => {
     throw new Error("UserContext cannot be null");
   }
 
-  const handleSubmit = async (e: React.SyntheticEvent) => {
+  const login = async (details: Credentials) => {
     try {
-      e.preventDefault();
-      const user = await loginService.login({ username, password });
+      const user = await loginService.login(details);
 
       tillService.setToken(user.token);
 
       window.localStorage.setItem("loggedInUser", JSON.stringify(user));
 
       userContext.setUser(user);
+    } catch (error) {
+      throw new Error("Login failed");
+    }
+  };
+
+  const handleSubmit = async (e: React.SyntheticEvent) => {
+    try {
+      e.preventDefault();
+
+      await login({ username, password });
 
       toast("Log In Successful");
     } catch (error) {
       toast("Log In Failed");
+    }
+  };
+
+  const handleRegister = async (e: React.SyntheticEvent) => {
+    try {
+      e.preventDefault();
+      await usersService.createUser({ username, password });
+
+      await login({ username, password });
+      toast("Successfully Registered");
+    } catch (error) {
+      toast("Username already in use");
     }
   };
 
@@ -63,9 +86,15 @@ const LoginForm = () => {
             />
           </div>
 
-          <Button className="text-md" type="submit">
-            Login
-          </Button>
+          <div className="mt-4">
+            <Button className="text-md" type="submit">
+              Login
+            </Button>
+
+            <Button className="text-md mx-2" onClick={handleRegister}>
+              Register
+            </Button>
+          </div>
         </form>
       </div>
     );
