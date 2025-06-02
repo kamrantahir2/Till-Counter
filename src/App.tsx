@@ -30,8 +30,15 @@ function App() {
       tillService.setToken(user.token);
 
       setUser(user);
+
+      try {
+      } catch (error) {
+        console.log("Not active");
+      }
     }
   }, []);
+
+  useEffect(() => {}, []);
 
   useEffect(() => {
     tillService.getAll(user?.username).then((data) => setTills(data));

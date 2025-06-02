@@ -5,6 +5,14 @@ import dotenv from "dotenv";
 dotenv.config();
 import { LoggedInUser, Credentials } from "../../types";
 
+const getTokenFrom = (token: string) => {
+  if (token.startsWith("Bearer ")) {
+    const newToken = token.replace("Bearer ", "");
+    return newToken;
+  }
+  return "no token";
+};
+
 const login = async (credentials: Credentials): Promise<LoggedInUser> => {
   const username = credentials.username.toLowerCase();
   const password = credentials.password;
@@ -36,7 +44,7 @@ const login = async (credentials: Credentials): Promise<LoggedInUser> => {
   }
 
   const token = jwt.sign(userForToken, process.env.SECRET, {
-    expiresIn: 60 * 60,
+    expiresIn: 1,
   });
 
   const loggedInUser: LoggedInUser = {
@@ -49,4 +57,19 @@ const login = async (credentials: Credentials): Promise<LoggedInUser> => {
   return loggedInUser;
 };
 
-export default { login };
+const verifyToken = (token: string) => {
+  let verified = false;
+
+  jwt.verify(getTokenFrom(token), process.env.SECRET as string, (err, user) => {
+    if (err) {
+      console.log(err);
+      verified = false;
+    } else {
+      verified = true;
+    }
+  });
+
+  return verified;
+};
+
+export default { login, verifyToken };
