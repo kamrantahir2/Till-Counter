@@ -189,14 +189,14 @@ export function DataTable<TData, TValue>({
               : "opacity-0 absolute")
           }
         >
-          <div className="grid lg:grid-cols-2 gap-2 md:h-80 md:justify-items-center text-center">
+          <div className="grid lg:grid-cols-3 gap-2 md:gap-3 md:h-80 md:justify-items-center text-center place-content-center">
             {/* Till number filter starts */}
 
-            <div>
+            <div className="mx-auto">
               <h3 className="underline font-bold mb-2">Till Number:</h3>
 
-              <div className="grid grid-cols-2">
-                <Label className="flexs">
+              <div className="flex">
+                <Label className="flex">
                   <h3 className="leading-10">No. : </h3>
                   <input
                     type="number"
@@ -213,16 +213,16 @@ export function DataTable<TData, TValue>({
                     }
                   />
                 </Label>
-                <Button
-                  className="w-2/5"
-                  onClick={() => {
-                    setTillFilter(null);
-                    setTillFilterText("");
-                  }}
-                >
-                  Reset
-                </Button>
               </div>
+              <Button
+                className=" mt-3 mx-auto  w-full"
+                onClick={() => {
+                  setTillFilter(null);
+                  setTillFilterText("");
+                }}
+              >
+                Reset
+              </Button>
             </div>
 
             {/* Till number filter ends */}
@@ -230,14 +230,14 @@ export function DataTable<TData, TValue>({
             {/* Expected total filter starts here */}
             <div className="">
               <h4 className="underline font-bold mb-2">Expected Total</h4>
-              <div className="grid grid-cols-2">
+              <div className="grid grid-cols-2 justify-items-center">
                 <Label className="flex">
                   <h3 className="leading-10">From: </h3>
                   <input
                     type="number"
                     name="ExpectedTotalFrom"
                     id="ExpectedTotalFrom"
-                    className="border-2 border-black mx-2 rounded-lg"
+                    className="border-2 border-black mx-2 rounded-lg md:w-full w-2/5"
                     value={expectedFilterFromText}
                     onChange={(e) => {
                       setExpectedFilterFrom(Number(e.target.value));
@@ -249,13 +249,13 @@ export function DataTable<TData, TValue>({
                   />
                 </Label>
 
-                <Label className="flex ">
+                <Label className="flex mx-2">
                   <h3 className="leading-10">To: </h3>
                   <input
                     type="number"
                     name="ExpectedTotalTo"
                     id="ExpectedTotalTo"
-                    className="border-2 border-black mx-2 rounded-lg"
+                    className="border-2 border-black mx-2 rounded-lg md:w-full w-2/5"
                     value={expectedFilterToText}
                     onChange={(e) => {
                       setExpectedFilterTo(Number(e.target.value));
@@ -284,7 +284,7 @@ export function DataTable<TData, TValue>({
 
             {/* Till total filter starts here */}
 
-            <div className="mt-4 ">
+            <div className="">
               <h4 className="underline font-bold mb-2">Till Total</h4>
               <div className="grid grid-cols-2 gap-4">
                 <Label className="flex">
@@ -454,7 +454,7 @@ export function DataTable<TData, TValue>({
             {/* Date filter ends here */}
           </div>
 
-          <div className="flex justify-center mt-12 md:mt-36 lg:mt-12">
+          <div className="flex justify-center mt-12 md:mt-36 lg:mt-40">
             <Button type="submit" className="mx-4 w-1/6">
               Submit
             </Button>
