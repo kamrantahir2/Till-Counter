@@ -165,7 +165,7 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className="">
-      <div className="container">
+      <div className="md:container md:p-0 px-2">
         <div className="w-full text-center mb-12">
           <Button
             className="text-md w-1/5 font-normal"
