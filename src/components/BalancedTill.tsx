@@ -89,7 +89,7 @@ const BalancedTill = ({
 
       toast.success("Till Saved Successfully", {
         classNames: {
-          toast: " border-2 border-green-500",
+          toast: " border-2 border-green-500 bg-green-100",
           title: "text-base",
         },
       });

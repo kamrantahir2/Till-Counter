@@ -37,10 +37,14 @@ const getAll = async (username: string | undefined) => {
   return filtered;
 };
 
-const verifyToken = async (userToken: string) => {
-  const response = await axios.post("/api/users/verify", { token: token });
+const verifyToken = async () => {
+  try {
+    const response = await axios.post("/api/users/verify", { token: token });
 
-  return response.status;
+    return response.status;
+  } catch (error: any) {
+    return error.response;
+  }
 };
 
 export default { create, setToken, getAll, verifyToken };

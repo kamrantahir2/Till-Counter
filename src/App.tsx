@@ -10,6 +10,7 @@ import { PopulatedTill } from "./types";
 import { TillContextType } from "./types";
 import { Toaster } from "sonner";
 import { Routes, Route, Link } from "react-router-dom";
+import { toast } from "sonner";
 
 import Table from "./components/Table/page";
 
@@ -31,10 +32,18 @@ function App() {
 
       setUser(user);
 
-      try {
-      } catch (error) {
-        console.log("Not active");
-      }
+      tillService.verifyToken().then((res) => {
+        if (res.status === 403) {
+          setUser(null);
+          window.localStorage.removeItem("cupLogIn");
+          toast.error("Session Expired, Please Log In Again", {
+            classNames: {
+              toast: "border-2 border-red-500 bg-red-100 ",
+              title: "text-base",
+            },
+          });
+        }
+      });
     }
   }, []);
 

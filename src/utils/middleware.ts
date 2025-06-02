@@ -17,9 +17,9 @@ const errorHandler = (
       error.message.includes("E11000 duplicate key error")
     ) {
       return response.json(400).json({ error: "Username is not available" });
-    } else if (error.name === "TokenExpiredError: jwt expired") {
-      return response.status(401).json({ error: "token invalid" });
     } else if (error.name === "TokenExpiredError") {
+      return response.status(401).json({ error: "token invalid" });
+    } else if (error.message === "TokenExpiredError: jwt expired") {
       return response.status(401).json({ error: "Token Expired" });
     } else if (error.message === "invalid secret") {
       return response.status(500).json({ error: "invalid secret" });

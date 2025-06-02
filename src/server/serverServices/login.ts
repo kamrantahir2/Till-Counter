@@ -44,7 +44,7 @@ const login = async (credentials: Credentials): Promise<LoggedInUser> => {
   }
 
   const token = jwt.sign(userForToken, process.env.SECRET, {
-    expiresIn: 1,
+    expiresIn: 60 * 60,
   });
 
   const loggedInUser: LoggedInUser = {
@@ -60,9 +60,9 @@ const login = async (credentials: Credentials): Promise<LoggedInUser> => {
 const verifyToken = (token: string) => {
   let verified = false;
 
-  jwt.verify(getTokenFrom(token), process.env.SECRET as string, (err, user) => {
+  jwt.verify(getTokenFrom(token), process.env.SECRET as string, (err) => {
     if (err) {
-      console.log(err);
+      console.log(err.name);
       verified = false;
     } else {
       verified = true;
