@@ -195,8 +195,8 @@ export function DataTable<TData, TValue>({
             <div>
               <h3 className="underline font-bold mb-2">Till Number:</h3>
 
-              <div className="flex">
-                <Label className="flex">
+              <div className="grid grid-cols-2">
+                <Label className="flexs">
                   <h3 className="leading-10">No. : </h3>
                   <input
                     type="number"
@@ -214,7 +214,7 @@ export function DataTable<TData, TValue>({
                   />
                 </Label>
                 <Button
-                  className="ml-2"
+                  className="w-2/5"
                   onClick={() => {
                     setTillFilter(null);
                     setTillFilterText("");
@@ -230,14 +230,14 @@ export function DataTable<TData, TValue>({
             {/* Expected total filter starts here */}
             <div className="">
               <h4 className="underline font-bold mb-2">Expected Total</h4>
-              <div className="flex">
+              <div className="grid grid-cols-2">
                 <Label className="flex">
                   <h3 className="leading-10">From: </h3>
                   <input
                     type="number"
                     name="ExpectedTotalFrom"
                     id="ExpectedTotalFrom"
-                    className="border-2 border-black mx-2 rounded-lg md:w-full w-3/5"
+                    className="border-2 border-black mx-2 rounded-lg"
                     value={expectedFilterFromText}
                     onChange={(e) => {
                       setExpectedFilterFrom(Number(e.target.value));
@@ -249,13 +249,13 @@ export function DataTable<TData, TValue>({
                   />
                 </Label>
 
-                <Label className="flex  md:ml-0 -ml-8">
+                <Label className="flex ">
                   <h3 className="leading-10">To: </h3>
                   <input
                     type="number"
                     name="ExpectedTotalTo"
                     id="ExpectedTotalTo"
-                    className="border-2 border-black mx-2 rounded-lg md:w-full w-3/5"
+                    className="border-2 border-black mx-2 rounded-lg"
                     value={expectedFilterToText}
                     onChange={(e) => {
                       setExpectedFilterTo(Number(e.target.value));
@@ -266,18 +266,18 @@ export function DataTable<TData, TValue>({
                     }
                   />
                 </Label>
-                <Button
-                  className="md:ml-2 -ml-12"
-                  onClick={() => {
-                    setExpectedFilterFrom(Number.MIN_SAFE_INTEGER);
-                    setExpectedFilterTo(Number.MAX_SAFE_INTEGER);
-                    setExpectedFilterFromText("");
-                    setExpectedFilterToText("");
-                  }}
-                >
-                  Reset
-                </Button>
               </div>
+              <Button
+                className="mx-auto w-4/5 mt-3"
+                onClick={() => {
+                  setExpectedFilterFrom(Number.MIN_SAFE_INTEGER);
+                  setExpectedFilterTo(Number.MAX_SAFE_INTEGER);
+                  setExpectedFilterFromText("");
+                  setExpectedFilterToText("");
+                }}
+              >
+                Reset
+              </Button>
             </div>
 
             {/* Expected total filter ends here */}
@@ -286,14 +286,14 @@ export function DataTable<TData, TValue>({
 
             <div className="mt-4 ">
               <h4 className="underline font-bold mb-2">Till Total</h4>
-              <div className="flex">
+              <div className="grid grid-cols-2 gap-4">
                 <Label className="flex">
                   <h3 className="leading-10">From: </h3>
                   <input
                     type="number"
                     name="TillTotalFrom"
                     id="TillTotalFrom"
-                    className="border-2 border-black mx-2 rounded-lg md:w-full w-3/5"
+                    className="border-2 border-black mx-2 rounded-lg"
                     value={tillTotalFromText}
                     onChange={(e) => {
                       setTillTotalFrom(Number(e.target.value));
@@ -306,13 +306,13 @@ export function DataTable<TData, TValue>({
                   />
                 </Label>
 
-                <Label className="flex  md:ml-0 -ml-8">
+                <Label className="flex">
                   <h3 className="leading-10">To: </h3>
                   <input
                     type="number"
                     name="TillTotalTo"
                     id="TillTotalTo"
-                    className="border-2 border-black mx-2 rounded-lg md:w-full w-3/5"
+                    className="border-2 border-black mx-2 rounded-lg "
                     step={0.01}
                     value={tillTotalToText}
                     onChange={(e) => {
@@ -324,19 +324,18 @@ export function DataTable<TData, TValue>({
                     }
                   />
                 </Label>
-
-                <Button
-                  className="md:ml-2 -ml-12"
-                  onClick={() => {
-                    setTillTotalFrom(Number.MIN_SAFE_INTEGER);
-                    setTillTotalTo(Number.MAX_SAFE_INTEGER);
-                    setTillTotalFromText("");
-                    setTillTotalToText("");
-                  }}
-                >
-                  Reset
-                </Button>
               </div>
+              <Button
+                className="m-auto w-4/5 mt-3"
+                onClick={() => {
+                  setTillTotalFrom(Number.MIN_SAFE_INTEGER);
+                  setTillTotalTo(Number.MAX_SAFE_INTEGER);
+                  setTillTotalFromText("");
+                  setTillTotalToText("");
+                }}
+              >
+                Reset
+              </Button>
             </div>
 
             {/* Till total filter ends here */}
@@ -345,14 +344,14 @@ export function DataTable<TData, TValue>({
 
             <div className="mt-4 ">
               <h4 className="underline font-bold mb-2">Over/Under</h4>
-              <div className="flex">
+              <div className="grid grid-cols-2 gap-4">
                 <Label className="flex">
                   <h3 className="leading-10">From: </h3>
                   <input
                     type="number"
                     name="OverUnderFrom"
                     id="OverUnderFrom"
-                    className="border-2 border-black mx-2 rounded-lg md:w-full w-3/5"
+                    className="border-2 border-black mx-2 rounded-lg "
                     value={plusMinusFromText}
                     onChange={(e) => {
                       setPlusMinusFrom(Number(e.target.value));
@@ -365,13 +364,13 @@ export function DataTable<TData, TValue>({
                   />
                 </Label>
 
-                <Label className="flex  md:ml-0 -ml-8">
+                <Label className="flex  ">
                   <h3 className="leading-10">To: </h3>
                   <input
                     type="number"
                     name="OverUnderTo"
                     id="OverUnderTo"
-                    className="border-2 border-black mx-2 rounded-lg md:w-full w-3/5"
+                    className="border-2 border-black mx-2 rounded-lg"
                     value={plusMinusToText}
                     onChange={(e) => {
                       setPlusMinusTo(Number(e.target.value));
@@ -383,17 +382,17 @@ export function DataTable<TData, TValue>({
                     step={0.01}
                   />
                 </Label>
-                <Button
-                  className="md:ml-2 -ml-12"
-                  onClick={() => {
-                    setPlusMinusFrom(Number.MIN_SAFE_INTEGER);
-                    setPlusMinusTo(Number.MAX_SAFE_INTEGER);
-                    setPlusMinusFromText("");
-                  }}
-                >
-                  Reset
-                </Button>
               </div>
+              <Button
+                className="w-4/5 mt-3 mx-auto"
+                onClick={() => {
+                  setPlusMinusFrom(Number.MIN_SAFE_INTEGER);
+                  setPlusMinusTo(Number.MAX_SAFE_INTEGER);
+                  setPlusMinusFromText("");
+                }}
+              >
+                Reset
+              </Button>
             </div>
 
             {/* Over Under filter ends here */}
@@ -402,14 +401,14 @@ export function DataTable<TData, TValue>({
 
             <div className="mt-4 ">
               <h4 className="underline font-bold mb-2 w-full ">Date</h4>
-              <div className="flex">
+              <div className="grid grid-cols-2 gap-4">
                 <Label className="flex">
                   <h3 className="leading-10">From: </h3>
                   <input
                     type="date"
                     name="dateFrom"
                     id="dateFrom"
-                    className="border-2 border-black mx-2 rounded-lg px-2 md:w-full w-3/5"
+                    className="border-2 border-black mx-2 rounded-lg px-2"
                     value={dateFromText}
                     onChange={(e) => {
                       setDateFrom(e.target.value);
@@ -427,7 +426,7 @@ export function DataTable<TData, TValue>({
                     type="date"
                     name="dateTo"
                     id="dateTo"
-                    className="border-2 border-black mx-2 rounded-lg px-2 md:w-full w-3/5"
+                    className="border-2 border-black mx-2 rounded-lg px-2"
                     value={dateToText}
                     onChange={(e) => {
                       setDateTo(e.target.value);
@@ -438,19 +437,18 @@ export function DataTable<TData, TValue>({
                     }
                   />
                 </Label>
-
-                <Button
-                  className="md:ml-2-"
-                  onClick={() => {
-                    setDateFrom("-273721-3-19");
-                    setDateTo("273860-8-13");
-                    setDateFromText("");
-                    setDateToText("");
-                  }}
-                >
-                  Reset
-                </Button>
               </div>
+              <Button
+                className="mx-auto w-4/5 mt-3"
+                onClick={() => {
+                  setDateFrom("-273721-3-19");
+                  setDateTo("273860-8-13");
+                  setDateFromText("");
+                  setDateToText("");
+                }}
+              >
+                Reset
+              </Button>
             </div>
 
             {/* Date filter ends here */}
