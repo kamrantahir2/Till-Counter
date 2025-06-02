@@ -88,7 +88,7 @@ export function DataTable<TData, TValue>({
 
   const [dateToText, setDateToText] = useState("");
 
-  const [showFilter, setShowFilter] = useState(true);
+  const [showFilter, setShowFilter] = useState(false);
 
   // STATES END
 
