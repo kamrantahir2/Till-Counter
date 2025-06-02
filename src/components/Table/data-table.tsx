@@ -192,7 +192,7 @@ export function DataTable<TData, TValue>({
           <div className="grid lg:grid-cols-3 gap-2 md:gap-3 md:h-80 md:justify-items-center text-center place-content-center">
             {/* Till number filter starts */}
 
-            <div className="mx-auto">
+            <div className="mx-auto w-4/5">
               <h3 className="underline font-bold mb-2">Till Number:</h3>
 
               <div className="flex">
@@ -215,7 +215,7 @@ export function DataTable<TData, TValue>({
                 </Label>
               </div>
               <Button
-                className=" mt-3 mx-auto  w-full"
+                className=" mt-3 mx-auto bg-red-700 w-full"
                 onClick={() => {
                   setTillFilter(null);
                   setTillFilterText("");
@@ -268,7 +268,7 @@ export function DataTable<TData, TValue>({
                 </Label>
               </div>
               <Button
-                className="mx-auto w-4/5 mt-3"
+                className="mx-auto w-4/5 mt-3 bg-red-700"
                 onClick={() => {
                   setExpectedFilterFrom(Number.MIN_SAFE_INTEGER);
                   setExpectedFilterTo(Number.MAX_SAFE_INTEGER);
@@ -326,7 +326,7 @@ export function DataTable<TData, TValue>({
                 </Label>
               </div>
               <Button
-                className="m-auto w-4/5 mt-3"
+                className="m-auto w-4/5 mt-3 bg-red-700"
                 onClick={() => {
                   setTillTotalFrom(Number.MIN_SAFE_INTEGER);
                   setTillTotalTo(Number.MAX_SAFE_INTEGER);
@@ -384,7 +384,7 @@ export function DataTable<TData, TValue>({
                 </Label>
               </div>
               <Button
-                className="w-4/5 mt-3 mx-auto"
+                className="w-4/5 mt-3 mx-auto bg-red-700"
                 onClick={() => {
                   setPlusMinusFrom(Number.MIN_SAFE_INTEGER);
                   setPlusMinusTo(Number.MAX_SAFE_INTEGER);
@@ -439,7 +439,7 @@ export function DataTable<TData, TValue>({
                 </Label>
               </div>
               <Button
-                className="mx-auto w-4/5 mt-3"
+                className="mx-auto w-4/5 mt-3 bg-red-700"
                 onClick={() => {
                   setDateFrom("-273721-3-19");
                   setDateTo("273860-8-13");
@@ -473,7 +473,7 @@ export function DataTable<TData, TValue>({
                 setDateTo("273860-8-13");
                 filteredContext?.setFiltered(originalData!);
               }}
-              className="mx-4 w-1/6"
+              className="mx-4 w-1/6 bg-red-700"
             >
               Clear
             </Button>

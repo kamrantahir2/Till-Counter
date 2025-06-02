@@ -134,7 +134,7 @@ const TillTotal = ({
                 {floatSaved && (
                   <Button
                     onClick={handleRemoveFloat}
-                    className="w-full mb-4 text-md"
+                    className="w-full mb-4 text-md bg-red-600"
                   >
                     Delete Float
                   </Button>
