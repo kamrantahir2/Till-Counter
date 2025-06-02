@@ -440,7 +440,7 @@ export function DataTable<TData, TValue>({
                 </Label>
 
                 <Button
-                  className="md:ml-2 -ml-5"
+                  className="md:ml-2-"
                   onClick={() => {
                     setDateFrom("-273721-3-19");
                     setDateTo("273860-8-13");
