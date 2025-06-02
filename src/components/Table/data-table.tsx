@@ -237,7 +237,7 @@ export function DataTable<TData, TValue>({
                     type="number"
                     name="ExpectedTotalFrom"
                     id="ExpectedTotalFrom"
-                    className="border-2 border-black mx-2 rounded-lg md:w-full w-2/5"
+                    className="border-2 border-black mx-2 rounded-lg md:w-full w-4/6"
                     value={expectedFilterFromText}
                     onChange={(e) => {
                       setExpectedFilterFrom(Number(e.target.value));
@@ -255,7 +255,7 @@ export function DataTable<TData, TValue>({
                     type="number"
                     name="ExpectedTotalTo"
                     id="ExpectedTotalTo"
-                    className="border-2 border-black mx-2 rounded-lg md:w-full w-2/5"
+                    className="border-2 border-black mx-2 rounded-lg md:w-full w-4/6"
                     value={expectedFilterToText}
                     onChange={(e) => {
                       setExpectedFilterTo(Number(e.target.value));
