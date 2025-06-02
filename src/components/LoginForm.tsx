@@ -25,7 +25,7 @@ const LoginForm = () => {
 
       tillService.setToken(user.token);
 
-      window.localStorage.setItem("loggedInUser", JSON.stringify(user));
+      window.localStorage.setItem("cupLogIn", JSON.stringify(user));
 
       userContext.setUser(user);
     } catch (error) {
@@ -79,7 +79,7 @@ const LoginForm = () => {
 
   const handleLogout = () => {
     userContext.setUser(null);
-    window.localStorage.removeItem("loggedInUser");
+    window.localStorage.removeItem("cupLogIn");
   };
 
   if (!userContext.user) {

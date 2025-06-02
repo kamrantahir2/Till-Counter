@@ -22,7 +22,7 @@ function App() {
   const [tills, setTills] = useState<PopulatedTill[]>([]);
 
   useEffect(() => {
-    const loggedInUser = window.localStorage.getItem("loggedInUser");
+    const loggedInUser = window.localStorage.getItem("cupLogIn");
 
     if (loggedInUser) {
       const user = JSON.parse(loggedInUser);
