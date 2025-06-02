@@ -421,7 +421,7 @@ export function DataTable<TData, TValue>({
                   />
                 </Label>
 
-                <Label className="flex md:ml-0 -ml-6">
+                <Label className="flex md:ml-0 ">
                   <h3 className="leading-10">To: </h3>
                   <input
                     type="date"
@@ -440,7 +440,7 @@ export function DataTable<TData, TValue>({
                 </Label>
 
                 <Button
-                  className="md:ml-2 -ml-8"
+                  className="md:ml-2 -ml-5"
                   onClick={() => {
                     setDateFrom("-273721-3-19");
                     setDateTo("273860-8-13");
