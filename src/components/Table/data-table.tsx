@@ -293,7 +293,7 @@ export function DataTable<TData, TValue>({
                     type="number"
                     name="TillTotalFrom"
                     id="TillTotalFrom"
-                    className="border-2 border-black mx-2 rounded-lg"
+                    className="border-2 border-black mx-2 rounded-lg md:w-full w-4/6"
                     value={tillTotalFromText}
                     onChange={(e) => {
                       setTillTotalFrom(Number(e.target.value));
@@ -312,7 +312,7 @@ export function DataTable<TData, TValue>({
                     type="number"
                     name="TillTotalTo"
                     id="TillTotalTo"
-                    className="border-2 border-black mx-2 rounded-lg "
+                    className="border-2 border-black mx-2 rounded-lg md:w-full w-4/6"
                     step={0.01}
                     value={tillTotalToText}
                     onChange={(e) => {
@@ -351,7 +351,7 @@ export function DataTable<TData, TValue>({
                     type="number"
                     name="OverUnderFrom"
                     id="OverUnderFrom"
-                    className="border-2 border-black mx-2 rounded-lg "
+                    className="border-2 border-black mx-2 rounded-lg md:w-full w-4/6"
                     value={plusMinusFromText}
                     onChange={(e) => {
                       setPlusMinusFrom(Number(e.target.value));
@@ -370,7 +370,7 @@ export function DataTable<TData, TValue>({
                     type="number"
                     name="OverUnderTo"
                     id="OverUnderTo"
-                    className="border-2 border-black mx-2 rounded-lg"
+                    className="border-2 border-black mx-2 rounded-lg md:w-full w-4/6"
                     value={plusMinusToText}
                     onChange={(e) => {
                       setPlusMinusTo(Number(e.target.value));
