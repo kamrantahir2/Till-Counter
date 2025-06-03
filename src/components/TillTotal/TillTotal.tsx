@@ -36,7 +36,7 @@ const TillTotal = ({
   const [totalFiftyPound, setTotalFiftyPound] = useState(0);
   const [floatSaved, setFloatSaved] = useState(false);
 
-  const [simplified, setSimplified] = useState(false);
+  const [enterTotal, setEnterTotal] = useState(false);
 
   useEffect(() => {
     if (window.localStorage.getItem("tillCounterFloat") !== null) {
@@ -128,7 +128,11 @@ const TillTotal = ({
             <Label className="font-medium font-poppins text-lg">
               Enter Counts
             </Label>
-            <Switch className="mx-3" />
+            <Switch
+              className="mx-3"
+              onClick={() => setEnterTotal(!enterTotal)}
+            />
+            {console.log(enterTotal)}
             <Label className="font-medium font-poppins text-lg">
               Enter Total
             </Label>
