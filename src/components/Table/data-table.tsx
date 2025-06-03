@@ -172,9 +172,9 @@ export function DataTable<TData, TValue>({
           >
             Filter{" "}
             {showFilter ? (
-              <MdFilterListOff className="ml-2" />
+              <MdFilterListOff className="ml-2 text-xl" />
             ) : (
-              <IoFilter className="ml-2" />
+              <IoFilter className="ml-2  text-xl" />
             )}
           </Button>
         </div>
