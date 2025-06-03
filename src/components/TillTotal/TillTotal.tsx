@@ -132,7 +132,7 @@ const TillTotal = ({
               className="mx-3"
               onClick={() => setEnterTotal(!enterTotal)}
             />
-            {console.log(enterTotal)}
+
             <Label className="font-medium font-poppins text-lg">
               Enter Total
             </Label>
