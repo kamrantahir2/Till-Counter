@@ -4,9 +4,8 @@ import { FilteredContext } from "./page";
 import { Button } from "../ui/button";
 import { Label } from "@radix-ui/react-label";
 import { PopulatedTill } from "@/types";
-import { FilterX } from "lucide-react";
-
-import { Filter } from "lucide-react";
+import { MdFilterListOff } from "react-icons/md";
+import { IoFilter } from "react-icons/io5";
 
 import {
   ColumnDef,
@@ -173,9 +172,9 @@ export function DataTable<TData, TValue>({
           >
             Filter{" "}
             {showFilter ? (
-              <FilterX className="ml-2" />
+              <MdFilterListOff className="ml-2" />
             ) : (
-              <Filter className="ml-2" />
+              <IoFilter className="ml-2" />
             )}
           </Button>
         </div>
