@@ -148,6 +148,7 @@ const TillTotal = ({
                 setTotal={setFloat}
                 total={float}
                 value={1}
+                enterTotal={enterTotal}
               />
               <div className="">
                 {!floatSaved && (
@@ -171,6 +172,7 @@ const TillTotal = ({
               setTotal={setTotalOneP}
               value={0.01}
               total={totalOneP}
+              enterTotal={enterTotal}
             />
             <CurrencyInput
               setTotal={setTotalTwoP}
@@ -178,6 +180,7 @@ const TillTotal = ({
               label="2p Coins"
               currency="2p"
               total={totalTwoP}
+              enterTotal={enterTotal}
             />
             <CurrencyInput
               setTotal={setTotalFiveP}
@@ -185,6 +188,7 @@ const TillTotal = ({
               label="5p Coins"
               currency="5p"
               total={totalFiveP}
+              enterTotal={enterTotal}
             />
             <CurrencyInput
               setTotal={setTotalTenP}
@@ -192,6 +196,7 @@ const TillTotal = ({
               label="10p Coins"
               currency="10p"
               total={totalTenP}
+              enterTotal={enterTotal}
             />
             <CurrencyInput
               setTotal={setTotalTwentyP}
@@ -199,6 +204,7 @@ const TillTotal = ({
               label="20p Coins"
               currency="20p"
               total={totalTwentyP}
+              enterTotal={enterTotal}
             />
             <CurrencyInput
               setTotal={setTotalFiftyP}
@@ -206,6 +212,7 @@ const TillTotal = ({
               label="50p Coins"
               currency="50p"
               total={totalFiftyP}
+              enterTotal={enterTotal}
             />
             <CurrencyInput
               setTotal={setTotalOnePound}
@@ -213,6 +220,7 @@ const TillTotal = ({
               label="£1 Coins"
               currency="£1"
               total={totalOnePound}
+              enterTotal={enterTotal}
             />
             <CurrencyInput
               setTotal={setTotalTwoPound}
@@ -220,6 +228,7 @@ const TillTotal = ({
               label="£2 Coins"
               currency="£2"
               total={totalTwoPound}
+              enterTotal={enterTotal}
             />
             <CurrencyInput
               setTotal={setTotalFivePound}
@@ -227,6 +236,7 @@ const TillTotal = ({
               label="£5 Notes"
               currency="£5"
               total={totalFivePound}
+              enterTotal={enterTotal}
             />
             <CurrencyInput
               setTotal={setTotalTenPound}
@@ -234,6 +244,7 @@ const TillTotal = ({
               label="£10 Notes"
               currency="£10"
               total={totalTenPound}
+              enterTotal={enterTotal}
             />
             <CurrencyInput
               setTotal={setTotalTwentyPound}
@@ -241,6 +252,7 @@ const TillTotal = ({
               label="£20 Notes"
               currency="£20"
               total={totalTwentyPound}
+              enterTotal={enterTotal}
             />
             <CurrencyInput
               setTotal={setTotalFiftyPound}
@@ -248,6 +260,7 @@ const TillTotal = ({
               label="£50 Notes"
               currency="£50"
               total={totalFiftyPound}
+              enterTotal={enterTotal}
             />
           </div>
           <Button className="w-full text-md" type="submit">

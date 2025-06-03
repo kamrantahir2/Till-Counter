@@ -9,12 +9,14 @@ const CurrencyInput = ({
   label,
   currency,
   total,
+  enterTotal,
 }: {
   setTotal: React.Dispatch<React.SetStateAction<number>>;
   value: number;
   label: string;
   currency: string;
   total: number;
+  enterTotal: boolean;
 }) => {
   const [stringTotal, setStringTotal] = useState("");
   let saved = Number(window.localStorage.getItem("tillCounterFloat"));
@@ -29,7 +31,9 @@ const CurrencyInput = ({
   }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTotal(parseFloat((Number(e.target.value) * value).toFixed(2)));
+    !enterTotal
+      ? setTotal(parseFloat((Number(e.target.value) * value).toFixed(2)))
+      : setTotal(Number(e.target.value));
   };
 
   useEffect(() => {
@@ -48,7 +52,7 @@ const CurrencyInput = ({
   return (
     <div className="flex h-10 mb-4 ">
       <Label className="w-40 leading-10 font-poppins" htmlFor={currency}>
-        {label}:
+        {!enterTotal ? `${label}:` : `${currency}:`}
       </Label>
 
       <Input
@@ -56,10 +60,18 @@ const CurrencyInput = ({
         type="number"
         id={currency}
         required={currency === "float"}
-        placeholder={currency !== "float" ? `No. of ${label}` : `${label}`}
+        placeholder={
+          !enterTotal
+            ? currency !== "float"
+              ? `No. of ${label}`
+              : `${label}`
+            : `${currency} Total`
+        }
         className="w-6/12 text-md"
         onWheel={(_e) => (document.activeElement as HTMLElement).blur()}
-        value={total === 0 ? "" : Math.round(total / value)}
+        value={
+          total === 0 ? "" : !enterTotal ? Math.round(total / value) : total
+        }
       />
 
       <Label className="leading-10 lg:w-40 font-poppins ml-12">
