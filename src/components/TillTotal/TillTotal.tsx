@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import CurrencyInput from "./CurrencyInput";
+import { Switch } from "../ui/switch";
+import { Label } from "@radix-ui/react-label";
 
 const TillTotal = ({
   setFiveAndCoins,
@@ -33,6 +35,8 @@ const TillTotal = ({
   const [totalTwentyPound, setTotalTwentyPound] = useState(0);
   const [totalFiftyPound, setTotalFiftyPound] = useState(0);
   const [floatSaved, setFloatSaved] = useState(false);
+
+  const [simplified, setSimplified] = useState(false);
 
   useEffect(() => {
     if (window.localStorage.getItem("tillCounterFloat") !== null) {
@@ -115,6 +119,22 @@ const TillTotal = ({
         <h1 className="text-center mb-10 text-2xl font-semibold underline underline-offset-8">
           Till Counter
         </h1>
+
+        <div className="mb-8">
+          <h3 className="capitalize font-poppins text-lg font-semibold">
+            Already Know your totals? Try "Enter Total" Mode
+          </h3>
+          <div className="flex items-center">
+            <Label className="font-medium font-poppins text-lg">
+              Enter Counts
+            </Label>
+            <Switch className="mx-3" />
+            <Label className="font-medium font-poppins text-lg">
+              Enter Total
+            </Label>
+          </div>
+        </div>
+
         <form onSubmit={handleSubmit}>
           <div className="">
             <div>
