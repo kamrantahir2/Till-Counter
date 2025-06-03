@@ -192,7 +192,7 @@ export function DataTable<TData, TValue>({
           <div className="grid lg:grid-cols-3 gap-2 md:gap-3 md:h-80 md:justify-items-center text-center place-content-center">
             {/* Till number filter starts */}
 
-            <div className="mx-auto w-4/5">
+            <div className="mx-auto w-/5">
               <h3 className="underline font-bold mb-2">Till Number:</h3>
 
               <div className="flex">
@@ -214,15 +214,17 @@ export function DataTable<TData, TValue>({
                   />
                 </Label>
               </div>
-              <Button
-                className=" mt-3 mx-auto bg-red-700 w-full"
-                onClick={() => {
-                  setTillFilter(null);
-                  setTillFilterText("");
-                }}
-              >
-                Reset
-              </Button>
+              <div className="">
+                <Button
+                  className=" mt-3 bg-red-600 w-2/5"
+                  onClick={() => {
+                    setTillFilter(null);
+                    setTillFilterText("");
+                  }}
+                >
+                  Reset
+                </Button>
+              </div>
             </div>
 
             {/* Till number filter ends */}
@@ -268,7 +270,7 @@ export function DataTable<TData, TValue>({
                 </Label>
               </div>
               <Button
-                className="mx-auto w-4/5 mt-3 bg-red-700"
+                className="mx-auto w-1/5 mt-3 bg-red-600"
                 onClick={() => {
                   setExpectedFilterFrom(Number.MIN_SAFE_INTEGER);
                   setExpectedFilterTo(Number.MAX_SAFE_INTEGER);
@@ -326,7 +328,7 @@ export function DataTable<TData, TValue>({
                 </Label>
               </div>
               <Button
-                className="m-auto w-4/5 mt-3 bg-red-700"
+                className="m-auto w-1/5 mt-3 bg-red-600"
                 onClick={() => {
                   setTillTotalFrom(Number.MIN_SAFE_INTEGER);
                   setTillTotalTo(Number.MAX_SAFE_INTEGER);
@@ -384,7 +386,7 @@ export function DataTable<TData, TValue>({
                 </Label>
               </div>
               <Button
-                className="w-4/5 mt-3 mx-auto bg-red-700"
+                className="w-1/5 mt-3 mx-auto bg-red-600"
                 onClick={() => {
                   setPlusMinusFrom(Number.MIN_SAFE_INTEGER);
                   setPlusMinusTo(Number.MAX_SAFE_INTEGER);
@@ -439,7 +441,7 @@ export function DataTable<TData, TValue>({
                 </Label>
               </div>
               <Button
-                className="mx-auto w-4/5 mt-3 bg-red-700"
+                className="mx-auto w-1/5 mt-3 bg-red-600"
                 onClick={() => {
                   setDateFrom("-273721-3-19");
                   setDateTo("273860-8-13");
