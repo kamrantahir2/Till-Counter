@@ -117,7 +117,7 @@ const TillTotal = ({
   return (
     <div>
       <div className="md:border-r-2 md:pr-3 md:border-black">
-        <h1 className="text-center mb-10 text-2xl font-semibold underline underline-offset-8">
+        <h1 className="text-center mb-10 text-2xl font-medium underline underline-offset-8 font-poppins">
           Till Counter
         </h1>
 
@@ -126,7 +126,7 @@ const TillTotal = ({
             <div className="p-4">
               <h3 className="capitalize font-poppins text-lg font-semibold mb-4 flex ">
                 <FaRegLightbulb className="text-4xl" />{" "}
-                <span className="leading-10">Select Input Mode</span>
+                <span className="leading-10 ml-2">Select Input Mode</span>
               </h3>
               <p className="ml-2 font-semibold capitalize">
                 Tip: Click "Enter Total" If You Are Counting Coins/Notes

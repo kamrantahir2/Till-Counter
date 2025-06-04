@@ -102,7 +102,7 @@ const BalancedTill = ({
   if (tillTotal === 0) {
     return (
       <div className="mx-auto md:mt-0 mt-4">
-        <h1 className="text-center mb-10 text-2xl font-semibold underline underline-offset-8">
+        <h1 className="text-center mb-10 text-2xl font-medium underline underline-offset-8 font-poppins">
           Till Total
         </h1>
         <div className="ml-4">
