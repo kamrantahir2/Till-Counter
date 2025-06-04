@@ -15,6 +15,7 @@ import {
 } from "./ui/tooltip";
 import { toast } from "sonner";
 import { TillContext } from "@/App";
+import { IoMdAlert } from "react-icons/io";
 
 const BalancedTill = ({
   totalTakings,
@@ -104,9 +105,19 @@ const BalancedTill = ({
         <h1 className="text-center mb-10 text-2xl font-semibold underline underline-offset-8">
           Till Total
         </h1>
-        <h1 className="text-2xl text-center italic">
-          *Till totals will be shown after submitting Till Counter form*
-        </h1>
+        <div className="ml-4">
+          <div className="h-auto bg-yellow-100 border-2 rounded-xl border-yellow-400 content-center ">
+            <div className="p-4">
+              <h3 className="capitalize font-poppins text-lg font-semibold mb-4 flex ">
+                <IoMdAlert className="text-4xl" />{" "}
+                <span className="leading-10 ml-2">
+                  Till totals will be shown after submitting Till Counter form
+                </span>
+              </h3>
+              <p className="ml-2 font-semibold capitalize"></p>
+            </div>
+          </div>
+        </div>
         <div className="h-12"></div>
       </div>
     );
