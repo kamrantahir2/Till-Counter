@@ -105,7 +105,7 @@ const BalancedTill = ({
         <h1 className="text-center mb-10 text-2xl font-medium underline underline-offset-8 font-poppins">
           Till Total
         </h1>
-        <div className="ml-4">
+        <div className="md:ml-4">
           <div className="h-auto bg-yellow-100 border-2 rounded-xl border-yellow-400 content-center ">
             <div className="p-4">
               <h3 className="capitalize font-poppins text-lg font-semibold mb-4 flex ">
