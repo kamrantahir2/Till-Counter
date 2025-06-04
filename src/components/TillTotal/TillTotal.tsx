@@ -3,6 +3,7 @@ import { Button } from "../ui/button";
 import CurrencyInput from "./CurrencyInput";
 import { Switch } from "../ui/switch";
 import { Label } from "@radix-ui/react-label";
+import { FaRegLightbulb } from "react-icons/fa";
 
 const TillTotal = ({
   setFiveAndCoins,
@@ -121,9 +122,17 @@ const TillTotal = ({
         </h1>
 
         <div className="mb-8">
-          <h3 className="capitalize font-poppins text-lg font-semibold">
-            Already Know your totals? Try "Enter Total" Mode
-          </h3>
+          <div className="h-36 bg-blue-100 border-2 rounded-xl border-blue-600 content-center mb-8">
+            <div className="p-4">
+              <h3 className="capitalize font-poppins text-lg font-semibold mb-4 flex ">
+                <FaRegLightbulb className="text-4xl" />{" "}
+                <span className="leading-10">Select Input Mode</span>
+              </h3>
+              <p className="ml-2 font-semibold">
+                Click "Enter Total" If You Are Counting Coins/Notes Yourself
+              </p>
+            </div>
+          </div>
           <div className="flex items-center">
             <Label className="font-medium font-poppins text-lg">
               Enter Counts
