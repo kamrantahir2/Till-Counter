@@ -19,28 +19,25 @@ export const columns: ColumnDef<PopulatedTill>[] = [
     },
 
     sortingFn: (rowA, rowB) => {
-      const rowAReversed = rowA.original.date.split("-").reverse();
+      let date1Arr = rowA.original.date.split("-");
+      let date2Arr = rowB.original.date.split("-");
 
-      const rowBReversed = rowB.original.date.split("-").reverse();
+      for (let i = 0; i < date1Arr.length; i++) {
+        if (date1Arr[i].length === 1) {
+          date1Arr[i] = "0" + date1Arr[i];
+        }
+        if (date2Arr[i].length === 1) {
+          date2Arr[i] = "0" + date2Arr[i];
+        }
+      }
 
-      if (rowAReversed[0] < rowBReversed[0]) {
-        return -1;
-      } else if (rowAReversed[0] > rowBReversed[0]) {
+      const date1Num = date1Arr.reverse().join("");
+      const date2Num = date2Arr.reverse().join("");
+
+      if (date1Num > date2Num) {
         return 1;
       } else {
-        if (rowAReversed[1] < rowBReversed[1]) {
-          return 1;
-        } else if (rowAReversed[1] > rowBReversed[1]) {
-          return -1;
-        } else {
-          if (rowAReversed[2] < rowBReversed[2]) {
-            return -1;
-          } else if (rowAReversed[2] > rowBReversed[2]) {
-            return 1;
-          } else {
-            return 0;
-          }
-        }
+        return -1;
       }
     },
   },

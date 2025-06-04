@@ -47,8 +47,6 @@ function App() {
     }
   }, []);
 
-  useEffect(() => {}, []);
-
   useEffect(() => {
     tillService.getAll(user?.username).then((data) => setTills(data));
   }, [user]);
