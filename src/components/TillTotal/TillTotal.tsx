@@ -122,14 +122,20 @@ const TillTotal = ({
         </h1>
 
         <div className="mb-8">
-          <div className="h-36 bg-blue-100 border-2 rounded-xl border-blue-600 content-center mb-8">
+          <div className="h-auto bg-blue-100 border-2 rounded-xl border-blue-600 content-center mb-8">
             <div className="p-4">
               <h3 className="capitalize font-poppins text-lg font-semibold mb-4 flex ">
                 <FaRegLightbulb className="text-4xl" />{" "}
                 <span className="leading-10">Select Input Mode</span>
               </h3>
-              <p className="ml-2 font-semibold">
-                Click "Enter Total" If You Are Counting Coins/Notes Yourself
+              <p className="ml-2 font-semibold capitalize">
+                Tip: Click "Enter Total" If You Are Counting Coins/Notes
+                Yourself. <br /> <br />
+                Otherwise, click "enter counts" and Input how many of each coin
+                or note you have, the app will do the math.
+                <br /> <br />
+                “E.g., if you have 3 × £1 coins, enter ‘3’. We’ll show the total
+                as £3.00.”
               </p>
             </div>
           </div>
